@@ -5,6 +5,7 @@ using UnityEngine.UIElements;
 
 public class WeaponSystem : MonoBehaviour
 {
+   
     [SerializeField] WeaponBase _startingWeaponPrefab = null;
     [SerializeField] WeaponBase _slot01WeaponPrefab = null;
     [SerializeField] WeaponBase _slot02WeaponPrefab = null;
@@ -17,6 +18,7 @@ public class WeaponSystem : MonoBehaviour
 
     private void Awake()
     {
+        
         if (_startingWeaponPrefab != null)
             EquipWeapon(_startingWeaponPrefab);
     }
@@ -39,7 +41,9 @@ public class WeaponSystem : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             ShootWeapon();
+           
         }
+      
     }
 
     public void EquipWeapon(WeaponBase newWeapon)

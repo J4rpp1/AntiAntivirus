@@ -7,11 +7,11 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
 
-        [SerializeField] float _travelSpeed = 5f;
+    [SerializeField] float _travelSpeed = 5f;
     [SerializeField] float _lifeTime = 1.5f;
 
     Rigidbody _rb = null;
-    
+    ProjectilePool _projectilePool = null;
     Coroutine _selfDestructRoutine = null;
 
     private void Awake()
@@ -32,7 +32,10 @@ public class Projectile : MonoBehaviour
             StopCoroutine(_selfDestructRoutine);
     }
 
-  
+    public void AssignPool(ProjectilePool projectilePool)
+    {
+        _projectilePool = projectilePool;
+    }
 
     private void FixedUpdate()
     {
@@ -47,14 +50,21 @@ public class Projectile : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        RemoveSelf();
+       
+       RemoveSelf();
     }
 
     void RemoveSelf()
     {
-      
+        if (_projectilePool != null)
+        {
+            
+            _projectilePool.ReturnToPool(this);
+        }
+        else
+        {
             Destroy(gameObject);
-        
+        }
     }
 
     IEnumerator DestroyAfterSeconds(float lifeTime)

@@ -4,10 +4,17 @@ using UnityEngine;
 
 public class Pistol : WeaponBase
 {
+
+    public GameObject muzzleFlash;
+
+    public void Start()
+    {
+        //muzzleFlash.SetActive(false);
+    }
     public override void Shoot()
     {
-       
-        Debug.Log("Ampuu");
+        StartCoroutine(MuzzleFlash());
+        Debug.Log("Ampuu pistooli");
         // instantiating bullet
         Projectile newProjectile = Instantiate
             (Projectile, ProjectileSpawnLocation.position,
@@ -21,5 +28,16 @@ public class Pistol : WeaponBase
 
         //‰‰ni
         AudioSource.PlayClipAtPoint(ShootSound, ProjectileSpawnLocation.position);
+       
+
+        
+    }
+
+    IEnumerator MuzzleFlash()
+    {
+        muzzleFlash.SetActive(true);
+        yield return new WaitForSeconds(0.05f);
+        Debug.Log("flash");
+        muzzleFlash.SetActive(false);
     }
 }

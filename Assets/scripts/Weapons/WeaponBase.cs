@@ -18,4 +18,6 @@ public abstract class WeaponBase : MonoBehaviour
 
     [SerializeField] AudioClip _shootSound = null;
     protected AudioClip ShootSound => _shootSound;
+
+ 
 }
