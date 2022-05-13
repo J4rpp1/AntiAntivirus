@@ -60,3 +60,6 @@ crashlytics-build.properties
 
 /.vsconfig
 /UserSettings/EditorUserSettings.asset
+
+/.vscode/settings.json
+/UserSettings/Layouts/default-2021.dwlt
