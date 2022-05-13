@@ -1,15 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// Created by: Adam Chandler, using tutorials from Unity3D.college
-/// This script allows you to create your own object pool scripts from this template.
-/// To use:
-/// 1. Inherit from this class to create any type of Object pool you want.
-/// 2. Make sure to clean up your objects before sending them back to the pool. This script
-/// 3. Optionally, override ResetDefaults() to do extra work on object before returning to pool
-/// does not return object default settings: that is left to the user.
-/// </summary>
+
 public abstract class ObjectPool<T> : MonoBehaviour where T : Component
 {
     [Header("Pool Settings")]

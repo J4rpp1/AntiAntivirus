@@ -178,9 +178,10 @@ MonoBehaviour:
   _projectile: {fileID: 3305111655059814511, guid: 9edfadb3ab112f341b67dae9df2ce5da,
     type: 3}
   _projectileSpawnLocation: {fileID: 2424438923346150754}
-  _shootParticle: {fileID: 0}
-  _shootSound: {fileID: 0}
-  fireRate: 0.1
+  _shootParticle: {fileID: 6048840435147889705, guid: f99ab9e642c78474a9b341274aa5d5b9,
+    type: 3}
+  _shootSound: {fileID: 8300000, guid: 008ffa1298100f4448e13e7d2b88bb55, type: 3}
+  fireRate: 0.12
   muzzleFlash: {fileID: 4889256087835927114}
 --- !u!1 &4889256087835927114
 GameObject:

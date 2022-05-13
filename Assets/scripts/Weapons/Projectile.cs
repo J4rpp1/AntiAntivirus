@@ -6,8 +6,8 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public class Projectile : MonoBehaviour
 {
-
-    [SerializeField] float _travelSpeed = 5f;
+    public Transform explosionPrefab;
+    [SerializeField] float _travelSpeed = 2f;
     [SerializeField] float _lifeTime = 1.5f;
 
     Rigidbody _rb = null;
@@ -48,10 +48,14 @@ public class Projectile : MonoBehaviour
         rb.MovePosition(rb.position + moveOffset);
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnCollisionEnter(Collision collision)
     {
-       
-       RemoveSelf();
+
+        ContactPoint contact = collision.contacts[0];
+        Quaternion rotation = Quaternion.FromToRotation(Vector3.forward, contact.normal);
+        Vector3 position = contact.point;
+        Instantiate(explosionPrefab, position, rotation);
+        RemoveSelf();
     }
 
     void RemoveSelf()

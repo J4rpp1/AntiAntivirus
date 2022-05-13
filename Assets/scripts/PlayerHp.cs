@@ -2,13 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class PlayerHp : MonoBehaviour
 {
-
     public int currentHp;
     public int maxHp;
 
-    // Start is called before the first frame update
     void Start()
     {
         currentHp = maxHp;
@@ -17,7 +15,7 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (currentHp == 0)
+        if(currentHp == 0)
         {
             Destroy(gameObject);
         }

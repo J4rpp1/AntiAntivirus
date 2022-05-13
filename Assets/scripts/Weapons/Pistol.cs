@@ -14,11 +14,15 @@ public class Pistol : WeaponBase
     public override void Shoot()
     {
         StartCoroutine(MuzzleFlash());
-        Debug.Log("Ampuu pistooli");
+        
         // instantiating bullet
         Projectile newProjectile = Instantiate
             (Projectile, ProjectileSpawnLocation.position,
             ProjectileSpawnLocation.rotation);
+        
+        //‰‰ni
+        AudioSource.PlayClipAtPoint(ShootSound, ProjectileSpawnLocation.position);
+       
 
         // Particles
         ParticleSystem burstParticle = Instantiate
@@ -26,11 +30,8 @@ public class Pistol : WeaponBase
             Quaternion.identity);
         burstParticle.Play();
 
-        //‰‰ni
-        AudioSource.PlayClipAtPoint(ShootSound, ProjectileSpawnLocation.position);
-       
 
-        
+
     }
 
     IEnumerator MuzzleFlash()

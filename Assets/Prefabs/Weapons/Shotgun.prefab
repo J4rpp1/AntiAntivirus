@@ -262,8 +262,9 @@ MonoBehaviour:
   _projectile: {fileID: 3305111655059814511, guid: 9edfadb3ab112f341b67dae9df2ce5da,
     type: 3}
   _projectileSpawnLocation: {fileID: 1632628541259111757}
-  _shootParticle: {fileID: 0}
-  _shootSound: {fileID: 0}
+  _shootParticle: {fileID: 6048840435147889705, guid: f99ab9e642c78474a9b341274aa5d5b9,
+    type: 3}
+  _shootSound: {fileID: 8300000, guid: 566aef437aea8624c84bbcade7403b9e, type: 3}
   muzzleFlash: {fileID: 1837403203655081317}
   bulletsPerShot: 10
   spreadAngle: 7

@@ -32,6 +32,8 @@ public class Shotgun : WeaponBase
             Debug.Log("Ampuu");
         }
       
+        //‰‰ni
+        AudioSource.PlayClipAtPoint(ShootSound, ProjectileSpawnLocation.position);
        
         
         // Particles
@@ -40,8 +42,6 @@ public class Shotgun : WeaponBase
             Quaternion.identity);
         burstParticle.Play();
 
-        //‰‰ni
-        AudioSource.PlayClipAtPoint(ShootSound, ProjectileSpawnLocation.position);
     }
 
     IEnumerator MuzzleFlash()

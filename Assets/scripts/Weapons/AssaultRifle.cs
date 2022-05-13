@@ -11,13 +11,7 @@ public class AssaultRifle : WeaponBase
         // instantiating bullet
         StartCoroutine(Shooting());
 
-        ParticleSystem burstParticle = Instantiate
-            (ShootParticle, ProjectileSpawnLocation.position,
-            Quaternion.identity);
-        burstParticle.Play();
-
         //‰‰ni
-        AudioSource.PlayClipAtPoint(ShootSound, ProjectileSpawnLocation.position);
     }
 
     private void Update()
@@ -31,10 +25,16 @@ public class AssaultRifle : WeaponBase
             (Projectile, ProjectileSpawnLocation.position,
             ProjectileSpawnLocation.rotation);
 
+
+        ParticleSystem burstParticle = Instantiate
+            (ShootParticle, ProjectileSpawnLocation.position,
+            Quaternion.identity);
+        burstParticle.Play();
         Debug.Log("Ampuu");
 
         yield return new WaitForSeconds(fireRate);
         muzzleFlash.SetActive(false);
+        AudioSource.PlayClipAtPoint(ShootSound, ProjectileSpawnLocation.position);
         if (Input.GetKey(KeyCode.Mouse0))
         {
             StartCoroutine(Shooting());
