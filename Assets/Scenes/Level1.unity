@@ -263,7 +263,7 @@ GameObject:
   - component: {fileID: 363754076}
   - component: {fileID: 363754075}
   - component: {fileID: 363754074}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -469,7 +469,7 @@ GameObject:
   - component: {fileID: 1514711846}
   - component: {fileID: 1514711845}
   - component: {fileID: 1514711844}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -623,14 +623,14 @@ MonoBehaviour:
   currentHp: 0
   maxHp: 1
   playerRef: {fileID: 0}
-  radius: 6
+  radius: 7
   angle: 90
   targetMask:
     serializedVersion: 2
     m_Bits: 8
   obstructionMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   canSeePlayer: 0
   points:
   - {fileID: 1695561537}
