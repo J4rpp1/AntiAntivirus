@@ -11,8 +11,7 @@ public class EnemyWeaponSystem : MonoBehaviour
     // weapon socket helps us position our weapon and graphics
     [SerializeField] Transform _weaponSocket = null;
 
-    // our weapon will use the STRATEGY PATTERN
-    // each new weapon will have its own behavior!
+    
     public WeaponBase EquippedWeapon { get; private set; }
 
     private void Awake()
