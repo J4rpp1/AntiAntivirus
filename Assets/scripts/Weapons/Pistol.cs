@@ -6,7 +6,8 @@ public class Pistol : WeaponBase
 {
 
     public GameObject muzzleFlash;
-
+    public Vector3 gizmoPosition;
+    public float radius;
     public void Start()
     {
         //muzzleFlash.SetActive(false);
@@ -14,7 +15,8 @@ public class Pistol : WeaponBase
     public override void Shoot()
     {
         StartCoroutine(MuzzleFlash());
-        
+
+        Sound(new Vector3(0, 0, 0), 5);
         // instantiating bullet
         Projectile newProjectile = Instantiate
             (Projectile, ProjectileSpawnLocation.position,
@@ -33,7 +35,20 @@ public class Pistol : WeaponBase
 
 
     }
-
+    void Sound(Vector3 center, float radius)
+    {
+        Collider[] hitColliders = Physics.OverlapSphere(center, radius);
+        foreach (var hitCollider in hitColliders)
+        {
+            hitCollider.SendMessage("Enemy heard");
+        }
+    }
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Vector3 newPosition = transform.position + gizmoPosition;
+        Gizmos.DrawWireSphere(newPosition, radius);
+    }
     IEnumerator MuzzleFlash()
     {
         muzzleFlash.SetActive(true);

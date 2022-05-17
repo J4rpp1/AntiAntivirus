@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 
 public class EnemyWeaponSystem : MonoBehaviour
 {
-
+    Enemy enemy;
     [SerializeField] WeaponBase _startingWeaponPrefab = null;
    
     // weapon socket helps us position our weapon and graphics
@@ -16,7 +16,7 @@ public class EnemyWeaponSystem : MonoBehaviour
 
     private void Awake()
     {
-
+        enemy = FindObjectOfType<Enemy>();
         if (_startingWeaponPrefab != null)
             EquipWeapon(_startingWeaponPrefab);
     }
@@ -26,7 +26,7 @@ public class EnemyWeaponSystem : MonoBehaviour
     
 
         // press Space
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (enemy.canSeePlayer)
         {
             ShootWeapon();
 
