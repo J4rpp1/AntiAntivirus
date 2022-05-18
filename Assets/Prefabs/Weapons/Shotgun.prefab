@@ -270,6 +270,8 @@ MonoBehaviour:
   spreadAngle: 7
   pelletFireVel: 1000
   bullet: {fileID: 6727736789818243738, guid: 4b7e7035c3a0ec148ab25f11fb4a137a, type: 3}
+  gizmoPosition: {x: 0, y: 0, z: 0}
+  radius: 5
 --- !u!1 &6450853733481683429
 GameObject:
   m_ObjectHideFlags: 0

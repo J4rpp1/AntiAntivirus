@@ -67,6 +67,10 @@ public class Enemy : MonoBehaviour
        
     }
 
+    public void SoundHeard()
+    {
+        Debug.Log("kuulee ‰‰nen");
+    }
     private IEnumerator FOVRoutine()
     {
 

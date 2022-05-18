@@ -183,6 +183,8 @@ MonoBehaviour:
   _shootSound: {fileID: 8300000, guid: 008ffa1298100f4448e13e7d2b88bb55, type: 3}
   fireRate: 0.12
   muzzleFlash: {fileID: 4889256087835927114}
+  gizmoPosition: {x: 0, y: 0, z: 0}
+  radius: 5
 --- !u!1 &4889256087835927114
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,6 +10,7 @@ public class Pistol : WeaponBase
     public float radius;
     public void Start()
     {
+           
         //muzzleFlash.SetActive(false);
     }
     public override void Shoot()
@@ -37,10 +38,10 @@ public class Pistol : WeaponBase
     }
     void Sound(Vector3 center, float radius)
     {
-        Collider[] hitColliders = Physics.OverlapSphere(center, radius);
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, radius);
         foreach (var hitCollider in hitColliders)
         {
-            hitCollider.SendMessage("Enemy heard");
+            hitCollider.SendMessage("SoundHeard", SendMessageOptions.DontRequireReceiver);
         }
     }
     void OnDrawGizmos()
@@ -53,7 +54,7 @@ public class Pistol : WeaponBase
     {
         muzzleFlash.SetActive(true);
         yield return new WaitForSeconds(0.05f);
-        Debug.Log("flash");
+        //Debug.Log("flash");
         muzzleFlash.SetActive(false);
     }
 }

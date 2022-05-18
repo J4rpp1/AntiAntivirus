@@ -6,10 +6,15 @@ public class DestroyBullet : MonoBehaviour
 {
 
     public Transform explosionPrefab;
+
+    private void Start()
+    {
+        StartCoroutine(Destroy());
+        
+    }
     private void OnCollisionEnter(Collision collision)
     {
 
-        StartCoroutine(Destroy());
         ContactPoint contact = collision.contacts[0];
         Quaternion rotation = Quaternion.FromToRotation(Vector3.forward, contact.normal);
         Vector3 position = contact.point;
