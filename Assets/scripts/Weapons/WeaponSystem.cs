@@ -5,12 +5,19 @@ using UnityEngine.UIElements;
 
 public class WeaponSystem : MonoBehaviour
 {
-   
+    public static WeaponSystem instance;
+
+    public Transform playerLocation;
+
     [SerializeField] WeaponBase _startingWeaponPrefab = null;
     [SerializeField] WeaponBase _slot01WeaponPrefab = null;
     [SerializeField] WeaponBase _slot02WeaponPrefab = null;
     // weapon socket helps us position our weapon and graphics
     [SerializeField] Transform _weaponSocket = null;
+
+    public Vector3 gizmoPosition;
+    public float radius;
+    public bool notShooting;
 
     // our weapon will use the STRATEGY PATTERN
     // each new weapon will have its own behavior!
@@ -18,7 +25,8 @@ public class WeaponSystem : MonoBehaviour
 
     private void Awake()
     {
-        
+        instance = this;
+
         if (_startingWeaponPrefab != null)
             EquipWeapon(_startingWeaponPrefab);
     }
@@ -41,9 +49,23 @@ public class WeaponSystem : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             ShootWeapon();
-           
+            Sound(new Vector3(0, 0, 0), 5);
         }
       
+    }
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Vector3 newPosition = transform.position + gizmoPosition;
+        Gizmos.DrawWireSphere(newPosition, radius);
+    }
+    void Sound(Vector3 center, float radius)
+    {
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, radius);
+        foreach (var hitCollider in hitColliders)
+        {
+            hitCollider.SendMessage("SoundHeard", SendMessageOptions.DontRequireReceiver);
+        }
     }
 
     public void EquipWeapon(WeaponBase newWeapon)
@@ -62,7 +84,7 @@ public class WeaponSystem : MonoBehaviour
 
     public void ShootWeapon()
     {
-        
+        if(notShooting)
         EquippedWeapon.Shoot();
     }
 }

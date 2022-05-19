@@ -5,10 +5,18 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour, IDamageable
 {
-    public Enemy instance;
+    WeaponSystem weaponSystem;
+    public static Enemy  instance;
+
+    public bool patrolEnemy;
+    public bool alertStarted;
 
     public int currentHp;
     public int maxHp;
+
+    public int alertLevel;
+
+    public float rotateSpeed = 1f;
 
     public GameObject playerRef;
     public float radius;
@@ -17,6 +25,7 @@ public class Enemy : MonoBehaviour, IDamageable
     public LayerMask targetMask;
     public LayerMask obstructionMask;
     public bool canSeePlayer;
+    public Transform heardSoundPosition;
 
     public Transform[] points;
     private int destPoint = 0;
@@ -25,6 +34,7 @@ public class Enemy : MonoBehaviour, IDamageable
     // Start is called before the first frame update
     void Start()
     {
+        weaponSystem = GameObject.FindObjectOfType<WeaponSystem>();
         playerRef = GameObject.FindGameObjectWithTag("Player");
         StartCoroutine(FOVRoutine());
         currentHp = maxHp;
@@ -63,18 +73,38 @@ public class Enemy : MonoBehaviour, IDamageable
     // Update is called once per frame
     void Update()
     {
+        if(canSeePlayer)
+        {
+            alertLevel = 2;
+            heardSoundPosition = weaponSystem.playerLocation;
+            agent.destination = weaponSystem.playerLocation.position;
+            Vector3 targetDirection = weaponSystem.playerLocation.position - transform.position;
+            float singleStep = rotateSpeed * Time.deltaTime;
+            Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
+            transform.rotation = Quaternion.LookRotation(newDirection);
+        }
+
         if (currentHp == 0)
         {
             Destroy(gameObject);
         }
-        if (!agent.pathPending && agent.remainingDistance < 0.5f)
+        if (!agent.pathPending && agent.remainingDistance < 0.5f && patrolEnemy && alertLevel == 0)
             GotoNextPoint();
-       
+
+        if (alertLevel == 1 && !alertStarted)
+            StartCoroutine(AlertMode1());
+
+       if(alertLevel == 2 && !alertStarted)
+        StartCoroutine(AlertMode());
+        
     }
 
     public void SoundHeard()
     {
+        alertStarted = false;
         Debug.Log("kuulee äänen");
+        heardSoundPosition = weaponSystem.playerLocation;
+        alertLevel = 2;
     }
     private IEnumerator FOVRoutine()
     {
@@ -87,7 +117,24 @@ public class Enemy : MonoBehaviour, IDamageable
             FieldofViewCheck();
         }
     }
-
+    IEnumerator AlertMode1()
+    {
+        alertStarted = true;
+        Debug.Log("alertLevel1");
+        yield return new WaitForSeconds(1);
+        alertLevel = 0;
+        alertStarted = false;
+    }
+    IEnumerator AlertMode()
+    {
+        alertStarted = true;
+        agent.isStopped = true;
+        yield return new WaitForSeconds(1);
+        agent.destination = heardSoundPosition.position;
+        agent.isStopped = false;
+        alertLevel = 1;
+        alertStarted = false;
+    }
     private void FieldofViewCheck()
     {
         Collider[] rangeChecks = Physics.OverlapSphere(transform.position, radius, targetMask);

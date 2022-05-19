@@ -24,15 +24,10 @@ public class Shotgun : WeaponBase
         }
     }
 
-    void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Vector3 newPosition = transform.position + gizmoPosition;
-        Gizmos.DrawWireSphere(newPosition, radius);
-    }
+ 
     public override void Shoot()
     {
-        Sound(new Vector3(0, 0, 0), 5);
+       
         StartCoroutine(MuzzleFlash());
         for (int i = 0; i < bulletsPerShot; i++)
         {
@@ -54,14 +49,7 @@ public class Shotgun : WeaponBase
         burstParticle.Play();
 
     }
-    void Sound(Vector3 center, float radius)
-    {
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, radius);
-        foreach (var hitCollider in hitColliders)
-        {
-            hitCollider.SendMessage("SoundHeard", SendMessageOptions.DontRequireReceiver);
-        }
-    }
+ 
     IEnumerator MuzzleFlash()
     {
         muzzleFlash.SetActive(true);

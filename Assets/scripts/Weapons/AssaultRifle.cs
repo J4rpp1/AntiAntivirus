@@ -20,15 +20,10 @@ public class AssaultRifle : WeaponBase
     {
       
     }
-    void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Vector3 newPosition = transform.position + gizmoPosition;
-        Gizmos.DrawWireSphere(newPosition, radius);
-    }
+    
     IEnumerator Shooting()
     {
-        Sound(new Vector3(0, 0, 0), 5);
+       
         muzzleFlash.SetActive(true);
         Projectile newProjectile = Instantiate
             (Projectile, ProjectileSpawnLocation.position,
@@ -51,12 +46,5 @@ public class AssaultRifle : WeaponBase
         
         
     }
-    void Sound(Vector3 center, float radius)
-    {
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, radius);
-        foreach (var hitCollider in hitColliders)
-        {
-            hitCollider.SendMessage("SoundHeard", SendMessageOptions.DontRequireReceiver);
-        }
-    }
+  
 }
