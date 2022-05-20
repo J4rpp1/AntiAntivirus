@@ -7,7 +7,8 @@ public class EnemyWeaponSystem : MonoBehaviour
 {
     Enemy enemy;
     [SerializeField] WeaponBase _startingWeaponPrefab = null;
-   
+    public bool notShooting;
+
     // weapon socket helps us position our weapon and graphics
     [SerializeField] Transform _weaponSocket = null;
 
@@ -50,8 +51,8 @@ public class EnemyWeaponSystem : MonoBehaviour
 
     public void ShootWeapon()
     {
-
-        EquippedWeapon.Shoot();
+        //if (notShooting)
+            EquippedWeapon.Shoot();
     }
 }
 

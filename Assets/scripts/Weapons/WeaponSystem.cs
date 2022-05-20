@@ -17,7 +17,7 @@ public class WeaponSystem : MonoBehaviour
 
     public Vector3 gizmoPosition;
     public float radius;
-    public bool notShooting;
+    
 
     // our weapon will use the STRATEGY PATTERN
     // each new weapon will have its own behavior!
@@ -84,7 +84,7 @@ public class WeaponSystem : MonoBehaviour
 
     public void ShootWeapon()
     {
-        if(notShooting)
+       
         EquippedWeapon.Shoot();
     }
 }
