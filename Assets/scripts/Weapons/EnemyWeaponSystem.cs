@@ -8,6 +8,7 @@ public class EnemyWeaponSystem : MonoBehaviour
     Enemy enemy;
     [SerializeField] WeaponBase _startingWeaponPrefab = null;
     public bool notShooting;
+    public float fireRate;
 
     // weapon socket helps us position our weapon and graphics
     [SerializeField] Transform _weaponSocket = null;
@@ -17,6 +18,7 @@ public class EnemyWeaponSystem : MonoBehaviour
 
     private void Awake()
     {
+        notShooting = true;
         enemy = FindObjectOfType<Enemy>();
         if (_startingWeaponPrefab != null)
             EquipWeapon(_startingWeaponPrefab);
@@ -27,10 +29,10 @@ public class EnemyWeaponSystem : MonoBehaviour
     
 
         // press Space
-        if (enemy.canSeePlayer)
+        if (enemy.canSeePlayer && notShooting)
         {
-            ShootWeapon();
-
+            //ShootWeapon();
+            StartCoroutine(Shoot());
         }
 
     }
@@ -49,10 +51,19 @@ public class EnemyWeaponSystem : MonoBehaviour
         EquippedWeapon.transform.SetParent(_weaponSocket);
     }
 
-    public void ShootWeapon()
+   /* public void ShootWeapon()
     {
-        //if (notShooting)
-            EquippedWeapon.Shoot();
+        notShooting = false;
+        EquippedWeapon.Shoot();
+        notShooting = true;
+    }*/
+
+    IEnumerator Shoot()
+    {
+        notShooting = false;
+        yield return new WaitForSeconds(fireRate);
+        EquippedWeapon.Shoot();
+        notShooting = true;
     }
 }
 

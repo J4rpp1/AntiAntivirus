@@ -5,11 +5,16 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour, IDamageable
 {
+  
+
     WeaponSystem weaponSystem;
     public static Enemy  instance;
 
+    private bool rotating;
+
     public bool patrolEnemy;
     public bool alertStarted;
+    public bool canStartIdle;
 
     public int currentHp;
     public int maxHp;
@@ -73,6 +78,7 @@ public class Enemy : MonoBehaviour, IDamageable
     // Update is called once per frame
     void Update()
     {
+        
         if(canSeePlayer)
         {
             alertLevel = 2;
@@ -83,6 +89,17 @@ public class Enemy : MonoBehaviour, IDamageable
             Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
             transform.rotation = Quaternion.LookRotation(newDirection);
         }
+        if (!canSeePlayer && alertStarted && alertLevel == 2 && !rotating && canStartIdle)
+            StartCoroutine(LookAround());
+        if (canSeePlayer)
+        {
+            canStartIdle = false;
+            //Debug.Log("pysäytä");
+            StopCoroutine(LookAround());
+            StopCoroutine(RotateMe(Vector3.up * 90, 0.8f));
+            StopCoroutine(RotateMe(Vector3.up * -90, 0.8f));
+           
+        }
 
         if (currentHp == 0)
         {
@@ -91,9 +108,8 @@ public class Enemy : MonoBehaviour, IDamageable
         if (!agent.pathPending && agent.remainingDistance < 0.5f && patrolEnemy && alertLevel == 0)
             GotoNextPoint();
 
-        if (alertLevel == 1 && !alertStarted)
+        if (alertLevel == 1 && !alertStarted && !canSeePlayer)
             StartCoroutine(AlertMode1());
-
        if(alertLevel == 2 && !alertStarted)
         StartCoroutine(AlertMode());
         
@@ -121,19 +137,54 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         alertStarted = true;
         Debug.Log("alertLevel1");
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(3);
         alertLevel = 0;
         alertStarted = false;
     }
     IEnumerator AlertMode()
     {
+        Debug.Log("alertlevel2");
         alertStarted = true;
         agent.isStopped = true;
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
         agent.destination = heardSoundPosition.position;
         agent.isStopped = false;
+        yield return new WaitForSeconds(2);
+        canStartIdle = true;
+        yield return new WaitForSeconds(4);
         alertLevel = 1;
         alertStarted = false;
+    }
+    IEnumerator LookAround()
+    {
+        Debug.Log("pyörrrr");
+        canStartIdle = false;
+        yield return new WaitForSeconds(2);
+        
+        StartCoroutine(RotateMe(Vector3.up * 90, 0.8f));
+     
+        yield return new WaitForSeconds(2);
+        StartCoroutine(RotateMe(Vector3.up * -90, 0.8f));
+
+        yield return new WaitForSeconds(2);
+        StartCoroutine(RotateMe(Vector3.up * -90, 0.8f));
+        Debug.Log("pyörähys loppu");
+    }
+    IEnumerator RotateMe(Vector3 byAngles, float inTime)
+    {
+        rotating = true;
+        Debug.Log("pyörähtää");
+        var fromAngle = transform.rotation;
+        var toAngle = Quaternion.Euler(transform.eulerAngles + byAngles);
+        for (var t = 0f; t <= 1; t += Time.deltaTime / inTime)
+        {
+            transform.rotation = Quaternion.Slerp(fromAngle, toAngle, t);
+
+            yield return null;
+        }
+
+        transform.rotation = toAngle;
+        rotating = false;
     }
     private void FieldofViewCheck()
     {

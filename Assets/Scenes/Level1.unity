@@ -610,6 +610,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   patrolEnemy: 1
   alertStarted: 0
+  canStartIdle: 0
   currentHp: 0
   maxHp: 1
   alertLevel: 0
@@ -702,7 +703,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1877165076}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.75, y: 1.11, z: -3.2742991}
+  m_LocalPosition: {x: 11.28, y: 1.11, z: -3.2742991}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -724,6 +725,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startingWeaponPrefab: {fileID: 1141024367618613757, guid: 0f51011baa8c06848929abd2052e86f7,
     type: 3}
+  notShooting: 0
+  fireRate: 0.5
   _weaponSocket: {fileID: 1505852960}
 --- !u!195 &1877165084
 NavMeshAgent:
@@ -971,6 +974,11 @@ PrefabInstance:
         type: 3}
       propertyPath: orthographic
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 604915491615335394, guid: 98a8db7af51fd624e8ff6a6ca3c18629,
+        type: 3}
+      propertyPath: orthographic size
+      value: 7.83
       objectReference: {fileID: 0}
     - target: {fileID: 604915491615335404, guid: 98a8db7af51fd624e8ff6a6ca3c18629,
         type: 3}
