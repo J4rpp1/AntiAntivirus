@@ -35,6 +35,9 @@ public class Enemy : MonoBehaviour, IDamageable
     public Transform[] points;
     private int destPoint = 0;
     private NavMeshAgent agent;
+    public float timer;
+    public float timer2;
+    public float timer3;
 
     // Start is called before the first frame update
     void Start()
@@ -78,9 +81,12 @@ public class Enemy : MonoBehaviour, IDamageable
     // Update is called once per frame
     void Update()
     {
-        
+        //näkee pelaajan
         if(canSeePlayer)
         {
+            timer = 0;
+            timer3 = 0;
+            Debug.Log("näkee pelaajan");
             alertLevel = 2;
             heardSoundPosition = weaponSystem.playerLocation;
             agent.destination = weaponSystem.playerLocation.position;
@@ -89,16 +95,37 @@ public class Enemy : MonoBehaviour, IDamageable
             Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
             transform.rotation = Quaternion.LookRotation(newDirection);
         }
-        if (!canSeePlayer && alertStarted && alertLevel == 2 && !rotating && canStartIdle)
-            StartCoroutine(LookAround());
+        if (!canSeePlayer && alertLevel == 1 && !rotating && canStartIdle)
+        {
+            Debug.Log("ajastimet");
+            timer += 1 * Time.deltaTime;
+            
+
+        }
+        if (timer > 2)
+        {
+            Debug.Log("timer valmis");
+           
+            alertStarted = false;
+            agent.isStopped = true;
+            
+        }
+        if(timer > 4)
+        {
+            Debug.Log("timer2 valmis");
+                alertLevel = 0;
+            agent.isStopped = false;
+            timer = 0;
+
+        }
+      
+        //StartCoroutine(LookAround());
         if (canSeePlayer)
         {
             canStartIdle = false;
             //Debug.Log("pysäytä");
-            StopCoroutine(LookAround());
-            StopCoroutine(RotateMe(Vector3.up * 90, 0.8f));
-            StopCoroutine(RotateMe(Vector3.up * -90, 0.8f));
-           
+            
+            
         }
 
         if (currentHp == 0)
@@ -109,12 +136,51 @@ public class Enemy : MonoBehaviour, IDamageable
             GotoNextPoint();
 
         if (alertLevel == 1 && !alertStarted && !canSeePlayer)
-            StartCoroutine(AlertMode1());
+        {
+
+        }
+           // StartCoroutine(AlertMode1());
        if(alertLevel == 2 && !alertStarted)
-        StartCoroutine(AlertMode());
-        
+        {
+            Alert1();
+        }
+        // StartCoroutine(AlertMode());
+        //Debug.Log(timer);
+        if (alertStarted)
+            timer3 += 1 * Time.deltaTime;
+        //Debug.Log(timer3);
+
+        if(timer3 > 1)
+        {
+            Alert2();
+        }
+        if(timer3 > 4)
+        {
+
+        canStartIdle = true;
+        alertStarted = false;
+            timer3 = 0;
+        alertLevel = 1;
+
+        }
+
+        Debug.Log(alertLevel);
     }
 
+
+    void Alert1()
+    {
+        Debug.Log("alertti 1");
+            alertStarted = true;
+            agent.isStopped = true;
+    }
+    void Alert2()
+    {
+            agent.destination = heardSoundPosition.position;
+            agent.isStopped = false;
+            Debug.Log("toimii");
+
+    }
     public void SoundHeard()
     {
         alertStarted = false;
@@ -133,7 +199,7 @@ public class Enemy : MonoBehaviour, IDamageable
             FieldofViewCheck();
         }
     }
-    IEnumerator AlertMode1()
+   /* IEnumerator AlertMode1()
     {
         alertStarted = true;
         Debug.Log("alertLevel1");
@@ -141,7 +207,7 @@ public class Enemy : MonoBehaviour, IDamageable
         alertLevel = 0;
         alertStarted = false;
     }
-    IEnumerator AlertMode()
+    /*IEnumerator AlertMode()
     {
         Debug.Log("alertlevel2");
         alertStarted = true;
@@ -152,40 +218,11 @@ public class Enemy : MonoBehaviour, IDamageable
         yield return new WaitForSeconds(2);
         canStartIdle = true;
         yield return new WaitForSeconds(4);
-        alertLevel = 1;
+       // alertLevel = 1;
         alertStarted = false;
     }
-    IEnumerator LookAround()
-    {
-        Debug.Log("pyörrrr");
-        canStartIdle = false;
-        yield return new WaitForSeconds(2);
-        
-        StartCoroutine(RotateMe(Vector3.up * 90, 0.8f));
-     
-        yield return new WaitForSeconds(2);
-        StartCoroutine(RotateMe(Vector3.up * -90, 0.8f));
-
-        yield return new WaitForSeconds(2);
-        StartCoroutine(RotateMe(Vector3.up * -90, 0.8f));
-        Debug.Log("pyörähys loppu");
-    }
-    IEnumerator RotateMe(Vector3 byAngles, float inTime)
-    {
-        rotating = true;
-        Debug.Log("pyörähtää");
-        var fromAngle = transform.rotation;
-        var toAngle = Quaternion.Euler(transform.eulerAngles + byAngles);
-        for (var t = 0f; t <= 1; t += Time.deltaTime / inTime)
-        {
-            transform.rotation = Quaternion.Slerp(fromAngle, toAngle, t);
-
-            yield return null;
-        }
-
-        transform.rotation = toAngle;
-        rotating = false;
-    }
+   */
+   
     private void FieldofViewCheck()
     {
         Collider[] rangeChecks = Physics.OverlapSphere(transform.position, radius, targetMask);
