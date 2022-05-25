@@ -49,7 +49,7 @@ public class WeaponSystem : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             ShootWeapon();
-            Sound(new Vector3(0, 0, 0), 5);
+            Sound(new Vector3(0, 0, 0), 7);
         }
       
     }

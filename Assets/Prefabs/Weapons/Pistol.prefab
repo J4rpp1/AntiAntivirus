@@ -55,8 +55,6 @@ MonoBehaviour:
     type: 3}
   _shootSound: {fileID: 8300000, guid: 985c8899efb772948874ffb2c42c39de, type: 3}
   muzzleFlash: {fileID: 7396194684696616235}
-  targetPosition: {x: 0, y: 0, z: 0}
-  radius: 5
 --- !u!1 &1722365305046206277
 GameObject:
   m_ObjectHideFlags: 0
@@ -203,7 +201,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3173176516656994959
 Transform:
   m_ObjectHideFlags: 0

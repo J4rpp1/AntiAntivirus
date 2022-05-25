@@ -5,8 +5,16 @@ using UnityEngine.UIElements;
 
 public class EnemyWeaponSystem : MonoBehaviour
 {
+    public static EnemyWeaponSystem instance;
+    public bool isPistolEnemy;
+    public bool isShotGunEnemy;
+    public bool isArEnemy;
+
     Enemy enemy;
-    [SerializeField] WeaponBase _startingWeaponPrefab = null;
+    
+    [SerializeField] WeaponBase pistol = null;
+    [SerializeField] WeaponBase shotgun = null;
+    [SerializeField] WeaponBase assaultRifle = null;
     public bool notShooting;
     public float fireRate;
 
@@ -18,10 +26,24 @@ public class EnemyWeaponSystem : MonoBehaviour
 
     private void Awake()
     {
+        instance = this;
         notShooting = true;
         enemy = FindObjectOfType<Enemy>();
-        if (_startingWeaponPrefab != null)
-            EquipWeapon(_startingWeaponPrefab);
+       
+       
+        if (isPistolEnemy)
+        {
+            EquipWeapon(pistol);
+        }
+        if (isShotGunEnemy)
+        {
+            EquipWeapon(shotgun);
+        }
+        if (isArEnemy)
+        {
+            EquipWeapon(assaultRifle);
+        }
+
     }
 
     private void Update()

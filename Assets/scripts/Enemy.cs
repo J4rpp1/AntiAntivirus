@@ -5,14 +5,24 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour, IDamageable
 {
-  
+
+    [Header("Pickable weapons")]
+    public GameObject pistol;
+    public GameObject shotgun;
+    public GameObject Ar;
+
+    [Header("Patrol points")]
+    public bool patrolEnemy;
+    public Transform[] points;
+
 
     WeaponSystem weaponSystem;
+    EnemyWeaponSystem enemyWeaponSystem;
     public static Enemy  instance;
 
-    private bool rotating;
+   
 
-    public bool patrolEnemy;
+    [Header("Don't change!")]
     public bool alertStarted;
     public bool canStartIdle;
 
@@ -32,7 +42,6 @@ public class Enemy : MonoBehaviour, IDamageable
     public bool canSeePlayer;
     public Transform heardSoundPosition;
 
-    public Transform[] points;
     private int destPoint = 0;
     private NavMeshAgent agent;
     public float timer;
@@ -43,6 +52,7 @@ public class Enemy : MonoBehaviour, IDamageable
     void Start()
     {
         weaponSystem = GameObject.FindObjectOfType<WeaponSystem>();
+        enemyWeaponSystem = GameObject.FindObjectOfType<EnemyWeaponSystem>();
         playerRef = GameObject.FindGameObjectWithTag("Player");
         StartCoroutine(FOVRoutine());
         currentHp = maxHp;
@@ -81,6 +91,7 @@ public class Enemy : MonoBehaviour, IDamageable
     // Update is called once per frame
     void Update()
     {
+        
         //näkee pelaajan
         if(canSeePlayer)
         {
@@ -89,13 +100,14 @@ public class Enemy : MonoBehaviour, IDamageable
             Debug.Log("näkee pelaajan");
             alertLevel = 2;
             heardSoundPosition = weaponSystem.playerLocation;
-            agent.destination = weaponSystem.playerLocation.position;
+            //agent.destination = weaponSystem.playerLocation.position;
+            agent.destination = heardSoundPosition.position;
             Vector3 targetDirection = weaponSystem.playerLocation.position - transform.position;
             float singleStep = rotateSpeed * Time.deltaTime;
             Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
             transform.rotation = Quaternion.LookRotation(newDirection);
         }
-        if (!canSeePlayer && alertLevel == 1 && !rotating && canStartIdle)
+        if (!canSeePlayer && alertLevel == 1 && canStartIdle)
         {
             Debug.Log("ajastimet");
             timer += 1 * Time.deltaTime;
@@ -130,6 +142,12 @@ public class Enemy : MonoBehaviour, IDamageable
 
         if (currentHp == 0)
         {
+            if (enemyWeaponSystem.isPistolEnemy)
+                Instantiate(pistol, transform.position, transform.rotation);
+            if (enemyWeaponSystem.isShotGunEnemy)
+                Instantiate(shotgun, transform.position, transform.rotation);
+            if (enemyWeaponSystem.isArEnemy)
+                Instantiate(Ar, transform.position, transform.rotation);
             Destroy(gameObject);
         }
         if (!agent.pathPending && agent.remainingDistance < 0.5f && patrolEnemy && alertLevel == 0)
