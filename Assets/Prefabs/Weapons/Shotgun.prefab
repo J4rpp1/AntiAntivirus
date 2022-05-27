@@ -267,7 +267,7 @@ MonoBehaviour:
   _shootSound: {fileID: 8300000, guid: 566aef437aea8624c84bbcade7403b9e, type: 3}
   muzzleFlash: {fileID: 1837403203655081317}
   bulletsPerShot: 10
-  spreadAngle: 20
+  spreadAngle: 15
   pelletFireVel: 1000
   bullet: {fileID: 6727736789818243738, guid: 4b7e7035c3a0ec148ab25f11fb4a137a, type: 3}
   ammoCount: 3
