@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 5280584187550984311}
   - component: {fileID: 5280584187550984312}
   - component: {fileID: 5280584187550984313}
-  - component: {fileID: 5280584187550984308}
   - component: {fileID: 5280584187550984307}
   m_Layer: 0
   m_Name: Enemy
@@ -114,9 +113,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd0b1e84b789ab44b37c13d371b86ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pistol: {fileID: 1833634473967492148, guid: 9499e5af562d47e4c806b225bb011b01, type: 3}
-  shotgun: {fileID: 5889491352029253527, guid: 183bdb2569b1ce34e8d0c62e19f41532, type: 3}
-  Ar: {fileID: 7569345169552333013, guid: b7d89dbf421414a4b887212439ab5f33, type: 3}
+  pistolDrop: {fileID: 1833634473967492148, guid: 9499e5af562d47e4c806b225bb011b01,
+    type: 3}
+  shotgunDrop: {fileID: 5889491352029253527, guid: 183bdb2569b1ce34e8d0c62e19f41532,
+    type: 3}
+  ArDrop: {fileID: 7569345169552333013, guid: b7d89dbf421414a4b887212439ab5f33, type: 3}
   patrolEnemy: 0
   points: []
   alertStarted: 0
@@ -139,27 +140,15 @@ MonoBehaviour:
   timer: 0
   timer2: 0
   timer3: 0
---- !u!114 &5280584187550984308
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5280584187550984315}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa658b46df5f76348bcd66ffef4f5edd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   isPistolEnemy: 0
   isShotGunEnemy: 0
-  isArEnemy: 1
+  isArEnemy: 0
   pistol: {fileID: 8251731071600802478, guid: ce1888157a9923b41aa2131e00668c64, type: 3}
   shotgun: {fileID: 1141024367618613757, guid: 0f51011baa8c06848929abd2052e86f7, type: 3}
   assaultRifle: {fileID: 2674087534309154053, guid: 1288a3fce18ed2644a956c0b482c1b60,
     type: 3}
   notShooting: 0
-  fireRate: 0.5
+  fireRate: 0.2
   _weaponSocket: {fileID: 5280584188459176527}
 --- !u!195 &5280584187550984307
 NavMeshAgent:

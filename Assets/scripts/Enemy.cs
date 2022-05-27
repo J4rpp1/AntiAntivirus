@@ -7,9 +7,9 @@ public class Enemy : MonoBehaviour, IDamageable
 {
 
     [Header("Pickable weapons")]
-    public GameObject pistol;
-    public GameObject shotgun;
-    public GameObject Ar;
+    public GameObject pistolDrop;
+    public GameObject shotgunDrop;
+    public GameObject ArDrop;
 
     [Header("Patrol points")]
     public bool patrolEnemy;
@@ -17,8 +17,8 @@ public class Enemy : MonoBehaviour, IDamageable
 
 
     WeaponSystem weaponSystem;
-    EnemyWeaponSystem enemyWeaponSystem;
-    public static Enemy  instance;
+    
+   
 
    
 
@@ -48,11 +48,28 @@ public class Enemy : MonoBehaviour, IDamageable
     public float timer2;
     public float timer3;
 
+    public bool isPistolEnemy;
+    public bool isShotGunEnemy;
+    public bool isArEnemy;
+
+    Enemy enemy;
+
+    [SerializeField] WeaponBase pistol = null;
+    [SerializeField] WeaponBase shotgun = null;
+    [SerializeField] WeaponBase assaultRifle = null;
+    public bool notShooting;
+    public float fireRate;
+
+    // weapon socket helps us position our weapon and graphics
+    [SerializeField] Transform _weaponSocket = null;
+
+
+    public WeaponBase EquippedWeapon { get; private set; }
     // Start is called before the first frame update
     void Start()
     {
         weaponSystem = GameObject.FindObjectOfType<WeaponSystem>();
-        enemyWeaponSystem = GameObject.FindObjectOfType<EnemyWeaponSystem>();
+        
         playerRef = GameObject.FindGameObjectWithTag("Player");
         StartCoroutine(FOVRoutine());
         currentHp = maxHp;
@@ -65,11 +82,49 @@ public class Enemy : MonoBehaviour, IDamageable
 
         GotoNextPoint();
     }
-    public void Awake()
+    private void Awake()
     {
-        instance = this;
+
+        notShooting = true;
+       
+
+
+        if (isPistolEnemy)
+        {
+            EquipWeapon(pistol);
+        }
+        if (isShotGunEnemy)
+        {
+            EquipWeapon(shotgun);
+        }
+        if (isArEnemy)
+        {
+            EquipWeapon(assaultRifle);
+        }
+
     }
-    
+    public void EquipWeapon(WeaponBase newWeapon)
+    {
+        if (EquippedWeapon != null)
+        {
+            Destroy(EquippedWeapon.gameObject);
+        }
+
+        // spawn weapon in the world and hold a reference
+        EquippedWeapon = Instantiate
+            (newWeapon, _weaponSocket.position, _weaponSocket.rotation);
+        // make sure to include it in the player GameObject so it follows
+        EquippedWeapon.transform.SetParent(_weaponSocket);
+    }
+
+    IEnumerator Shoot()
+    {
+        Debug.Log("Ampuu");
+        notShooting = false;
+        yield return new WaitForSeconds(fireRate);
+        EquippedWeapon.Shoot();
+        notShooting = true;
+    }
     public void Damage()
     {
         currentHp = 0;
@@ -91,7 +146,12 @@ public class Enemy : MonoBehaviour, IDamageable
     // Update is called once per frame
     void Update()
     {
-        
+        if (canSeePlayer && notShooting)
+        {
+            Debug.Log("saa ampua");
+            StartCoroutine(Shoot());
+
+        }
         //näkee pelaajan
         if(canSeePlayer)
         {
@@ -106,7 +166,9 @@ public class Enemy : MonoBehaviour, IDamageable
             float singleStep = rotateSpeed * Time.deltaTime;
             Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
             transform.rotation = Quaternion.LookRotation(newDirection);
+            
         }
+       
         if (!canSeePlayer && alertLevel == 1 && canStartIdle)
         {
             Debug.Log("ajastimet");
@@ -142,12 +204,12 @@ public class Enemy : MonoBehaviour, IDamageable
 
         if (currentHp == 0)
         {
-            if (enemyWeaponSystem.isPistolEnemy)
-                Instantiate(pistol, transform.position, transform.rotation);
-            if (enemyWeaponSystem.isShotGunEnemy)
-                Instantiate(shotgun, transform.position, transform.rotation);
-            if (enemyWeaponSystem.isArEnemy)
-                Instantiate(Ar, transform.position, transform.rotation);
+            if (isPistolEnemy)
+                Instantiate(pistolDrop, transform.position, transform.rotation);
+            if (isShotGunEnemy)
+                Instantiate(shotgunDrop, transform.position, transform.rotation);
+            if (isArEnemy)
+                Instantiate(ArDrop, transform.position, transform.rotation);
             Destroy(gameObject);
         }
         if (!agent.pathPending && agent.remainingDistance < 0.5f && patrolEnemy && alertLevel == 0)
