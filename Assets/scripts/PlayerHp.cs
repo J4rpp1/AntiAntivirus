@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerHp : MonoBehaviour
+public class PlayerHp : MonoBehaviour, IDamageable
 {
     public int currentHp;
     public int maxHp;
@@ -19,5 +19,9 @@ public class PlayerHp : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+    public void Damage()
+    {
+        currentHp = 0;
     }
 }
