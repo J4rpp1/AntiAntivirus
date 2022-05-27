@@ -12,6 +12,8 @@ public class Shotgun : WeaponBase
     public float spreadAngle = 10f;
     public float pelletFireVel;
     public GameObject bullet;
+    public int ammoCount;
+    public int MaxAmmo;
 
     public Vector3 gizmoPosition;
     public float radius = 5;
@@ -29,6 +31,7 @@ public class Shotgun : WeaponBase
     {
        
         StartCoroutine(MuzzleFlash());
+        ammoCount = ammoCount - 1;
         for (int i = 0; i < bulletsPerShot; i++)
         {
            pellets[i] = Random.rotation;

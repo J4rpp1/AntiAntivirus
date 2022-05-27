@@ -465,6 +465,8 @@ GameObject:
   - component: {fileID: 6912211409407346267}
   - component: {fileID: 1270641521}
   - component: {fileID: 1270641517}
+  - component: {fileID: 8101054577109723421}
+  - component: {fileID: 4737175041145622118}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -537,6 +539,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerLocation: {fileID: 5900403712513307409}
+  equipped: 0
+  pickUpRange: 0
+  player: {fileID: 0}
   _startingWeaponPrefab: {fileID: 2674087534309154053, guid: 1288a3fce18ed2644a956c0b482c1b60,
     type: 3}
   _slot01WeaponPrefab: {fileID: 8251731071600802478, guid: ce1888157a9923b41aa2131e00668c64,
@@ -545,7 +550,7 @@ MonoBehaviour:
     type: 3}
   _weaponSocket: {fileID: 708193951433379738}
   gizmoPosition: {x: 0, y: 0, z: 0}
-  radius: 5
+  radius: 7
 --- !u!136 &1270641521
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -561,6 +566,34 @@ CapsuleCollider:
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1270641517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3725985168774587733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f726ad4bb9feaf46b29fab010efca39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHp: 0
+  maxHp: 1
+--- !u!136 &8101054577109723421
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3725985168774587733}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4737175041145622118
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

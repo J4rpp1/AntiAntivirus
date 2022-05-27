@@ -26,7 +26,7 @@ public class EnemyWeaponSystem : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
+        instance = this; 
         notShooting = true;
         enemy = FindObjectOfType<Enemy>();
        

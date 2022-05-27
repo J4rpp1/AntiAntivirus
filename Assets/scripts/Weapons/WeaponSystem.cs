@@ -8,6 +8,10 @@ public class WeaponSystem : MonoBehaviour
     public static WeaponSystem instance;
 
     public Transform playerLocation;
+    public static bool slotFull;
+    public bool equipped;
+    public float pickUpRange;
+    public Transform player;
 
     [SerializeField] WeaponBase _startingWeaponPrefab = null;
     [SerializeField] WeaponBase _slot01WeaponPrefab = null;
@@ -46,12 +50,14 @@ public class WeaponSystem : MonoBehaviour
         }
 
         // press Space
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0) )
         {
             ShootWeapon();
             Sound(new Vector3(0, 0, 0), 7);
         }
-      
+        /*Vector3 distanceToPlayer = player.position - transform.position;
+        if (!equipped && distanceToPlayer.magnitude <= pickUpRange && Input.GetKeyDown(KeyCode.Mouse1) && !slotFull) PickUp();
+        if (equipped && Input.GetKeyDown(KeyCode.Mouse1)) Drop();*/
     }
     void OnDrawGizmos()
     {
@@ -68,6 +74,15 @@ public class WeaponSystem : MonoBehaviour
         }
     }
 
+    private void PickUp()
+    {
+
+    }
+    private void Drop()
+    {
+
+    }
+    
     public void EquipWeapon(WeaponBase newWeapon)
     {
         if (EquippedWeapon != null)
