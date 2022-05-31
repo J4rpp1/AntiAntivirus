@@ -9,7 +9,8 @@ public class Crosshair : MonoBehaviour
     private Vector3 mousePosition;
     public float moveSpeed = 0.1f;
     public bool hideCrosshair;
-    public GameObject crosshair;
+   
+    [SerializeField] private Camera mainCamera;
 
     void Start()
     {
@@ -20,8 +21,12 @@ public class Crosshair : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = Input.mousePosition;
-   
-
+        //transform.position = Input.mousePosition;
+       
+        Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+        if(Physics.Raycast(ray, out RaycastHit raycastHit))
+        {
+            transform.position = raycastHit.point;
+        }
     }
 }
