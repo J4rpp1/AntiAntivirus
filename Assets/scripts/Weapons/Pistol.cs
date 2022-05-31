@@ -6,6 +6,7 @@ public class Pistol : WeaponBase
 {
 
     public GameObject muzzleFlash;
+    public int ammoCount = 10;
     
  
     public void Start()
@@ -17,7 +18,7 @@ public class Pistol : WeaponBase
     {
         StartCoroutine(MuzzleFlash());
 
-      
+        
         // instantiating bullet
         Projectile newProjectile = Instantiate
             (Projectile, ProjectileSpawnLocation.position,

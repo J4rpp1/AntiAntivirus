@@ -8,21 +8,33 @@ public class WeaponSystem : MonoBehaviour
     public static WeaponSystem instance;
 
     public Transform playerLocation;
-    public static bool slotFull;
+
+    public float pickupDistance = 10f;
+    
     public bool equipped;
-    public float pickUpRange;
+    public bool pistolEquipped;
+    public bool shotgunEquipped;
+    public bool arEquipped;
+
     public Transform player;
+    public bool canPickUpPistol;
+    public bool canPickUpShotgun;
+    public bool canPickUpAr;
+    public int currentWepAmmocount;
 
     [SerializeField] WeaponBase _startingWeaponPrefab = null;
-    [SerializeField] WeaponBase _slot01WeaponPrefab = null;
-    [SerializeField] WeaponBase _slot02WeaponPrefab = null;
+    [SerializeField] WeaponBase pistolPrefab = null;
+    [SerializeField] WeaponBase shotgunPrefab = null;
+    [SerializeField] WeaponBase arPrefab = null;
     // weapon socket helps us position our weapon and graphics
     [SerializeField] Transform _weaponSocket = null;
 
     public Vector3 gizmoPosition;
     public float radius;
-    
 
+    public GameObject pistolDroppable;
+    public GameObject shotgunDroppable;
+    public GameObject arDroppable;
     // our weapon will use the STRATEGY PATTERN
     // each new weapon will have its own behavior!
     public WeaponBase EquippedWeapon { get; private set; }
@@ -37,27 +49,92 @@ public class WeaponSystem : MonoBehaviour
 
     private void Update()
     {
-        // press 1
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            EquipWeapon(_slot01WeaponPrefab);
-        }
+        
 
-        // press 2
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        if (Input.GetKeyDown(KeyCode.F) && canPickUpPistol && !equipped)
         {
-            EquipWeapon(_slot02WeaponPrefab);
+            EquipWeapon(pistolPrefab);
+            equipped = true;
+            pistolEquipped = true;
         }
-
+        if (Input.GetKeyDown(KeyCode.F) && canPickUpShotgun && !equipped)
+        {
+            EquipWeapon(shotgunPrefab);
+            equipped = true;
+            shotgunEquipped = true;
+        }
+        if (Input.GetKeyDown(KeyCode.F) && canPickUpAr && !equipped)
+        {
+            EquipWeapon(arPrefab);
+            equipped = true;
+            arEquipped = true;
+        }
         // press Space
-        if (Input.GetKeyDown(KeyCode.Mouse0) )
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             ShootWeapon();
             Sound(new Vector3(0, 0, 0), 7);
         }
-        /*Vector3 distanceToPlayer = player.position - transform.position;
-        if (!equipped && distanceToPlayer.magnitude <= pickUpRange && Input.GetKeyDown(KeyCode.Mouse1) && !slotFull) PickUp();
-        if (equipped && Input.GetKeyDown(KeyCode.Mouse1)) Drop();*/
+        
+        if (pistolEquipped && Input.GetKeyDown(KeyCode.G))
+        {
+            pistolEquipped = false;
+            equipped = false;
+            DropPistol();
+            EquipWeapon(_startingWeaponPrefab);
+
+        }
+        if (arEquipped && Input.GetKeyDown(KeyCode.G))
+        {
+            arEquipped = false;
+            equipped = false;
+            DropAr();
+            EquipWeapon(_startingWeaponPrefab);
+
+        }
+        if (shotgunEquipped && Input.GetKeyDown(KeyCode.G))
+        {
+            shotgunEquipped = false;
+            equipped = false;
+            DropShotgun();
+            EquipWeapon(_startingWeaponPrefab);
+
+        }
+
+    }
+
+    public void DropPistol()
+    {
+        GameObject P = Instantiate(pistolDroppable, _weaponSocket.position, _weaponSocket.rotation);
+       // P.GetComponent<Rigidbody>().AddForce(P.transform.forward * 1);
+    }
+    public void DropShotgun()
+    {
+        GameObject P = Instantiate(shotgunDroppable, _weaponSocket.position, _weaponSocket.rotation);
+        // P.GetComponent<Rigidbody>().AddForce(P.transform.forward * 1);
+    }
+    public void DropAr()
+    {
+        GameObject P = Instantiate(arDroppable, _weaponSocket.position, _weaponSocket.rotation);
+        // P.GetComponent<Rigidbody>().AddForce(P.transform.forward * 1);
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Pistol")
+            canPickUpPistol = true;
+        if (other.gameObject.tag == "Shotgun")
+            canPickUpShotgun = true;
+        if (other.gameObject.tag == "Ar")
+            canPickUpAr = true;
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Pistol")
+            canPickUpPistol = false;
+        if (other.gameObject.tag == "Shotgun")
+            canPickUpShotgun = false;
+        if (other.gameObject.tag == "Ar")
+            canPickUpAr = false;
     }
     void OnDrawGizmos()
     {
@@ -74,14 +151,6 @@ public class WeaponSystem : MonoBehaviour
         }
     }
 
-    private void PickUp()
-    {
-
-    }
-    private void Drop()
-    {
-
-    }
     
     public void EquipWeapon(WeaponBase newWeapon)
     {

@@ -450,7 +450,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 0.1
   hideCrosshair: 0
-  crosshair: {fileID: 2746503959260664985}
+  mainCamera: {fileID: 0}
 --- !u!1 &3725985168774587733
 GameObject:
   m_ObjectHideFlags: 0

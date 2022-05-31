@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5137296482749845920}
   - component: {fileID: 8251731071600802478}
+  - component: {fileID: 178149987}
   m_Layer: 0
   m_Name: Pistol
-  m_TagString: Untagged
+  m_TagString: Pistol
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -55,6 +56,20 @@ MonoBehaviour:
     type: 3}
   _shootSound: {fileID: 8300000, guid: 985c8899efb772948874ffb2c42c39de, type: 3}
   muzzleFlash: {fileID: 7396194684696616235}
+  ammoCount: 10
+--- !u!65 &178149987
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 33777123012957902}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1722365305046206277
 GameObject:
   m_ObjectHideFlags: 0
@@ -64,7 +79,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7975478985480017524}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ShootPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +113,7 @@ GameObject:
   - component: {fileID: 8063768322178977858}
   - component: {fileID: 1636746251674861044}
   - component: {fileID: 7771255239433491150}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -179,7 +194,7 @@ BoxCollider:
   m_GameObject: {fileID: 2468527628992982235}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -195,7 +210,7 @@ GameObject:
   - component: {fileID: 5564899015489324077}
   - component: {fileID: 4818344731034123831}
   - component: {fileID: 935641992721720369}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -291,7 +306,7 @@ GameObject:
   - component: {fileID: 8789945281155177338}
   - component: {fileID: 4393622973696006753}
   - component: {fileID: 5887053123384035856}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Area Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}

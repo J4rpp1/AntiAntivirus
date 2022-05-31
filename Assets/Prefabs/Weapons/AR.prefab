@@ -138,9 +138,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1886772602966771626}
   - component: {fileID: 2674087534309154053}
+  - component: {fileID: 433106433}
   m_Layer: 0
   m_Name: AR
-  m_TagString: Untagged
+  m_TagString: Ar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -185,6 +186,19 @@ MonoBehaviour:
   muzzleFlash: {fileID: 4889256087835927114}
   gizmoPosition: {x: 0, y: 0, z: 0}
   radius: 5
+--- !u!65 &433106433
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4647117927625483870}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4889256087835927114
 GameObject:
   m_ObjectHideFlags: 0
