@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Pistol
+  - Ar
+  - Shotgun
   layers:
   - Default
   - TransparentFX
@@ -14,8 +17,8 @@ TagManager:
   - Bullet
   - BulletTarget
   - Wall
-  - 
-  - 
+  - Gun
+  - Ground
   - 
   - 
   - 
