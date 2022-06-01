@@ -113,11 +113,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd0b1e84b789ab44b37c13d371b86ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pistolDrop: {fileID: 33777123012957902, guid: ce1888157a9923b41aa2131e00668c64,
+  pistolDrop: {fileID: 1833634473967492148, guid: 9499e5af562d47e4c806b225bb011b01,
     type: 3}
-  shotgunDrop: {fileID: 3194318813959973397, guid: 0f51011baa8c06848929abd2052e86f7,
+  shotgunDrop: {fileID: 5889491352029253527, guid: 183bdb2569b1ce34e8d0c62e19f41532,
     type: 3}
-  ArDrop: {fileID: 4647117927625483870, guid: 1288a3fce18ed2644a956c0b482c1b60, type: 3}
+  ArDrop: {fileID: 7569345169552333013, guid: b7d89dbf421414a4b887212439ab5f33, type: 3}
   patrolEnemy: 0
   points: []
   alertStarted: 0

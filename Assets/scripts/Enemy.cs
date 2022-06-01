@@ -244,7 +244,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
         }
 
-        Debug.Log(alertLevel);
+      //  Debug.Log(alertLevel);
     }
 
 

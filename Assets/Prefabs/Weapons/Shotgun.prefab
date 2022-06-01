@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6621281378588475706}
   - component: {fileID: 7718054965173249394}
   - component: {fileID: 797561038154376384}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 2370794999301954958}
   - component: {fileID: 5697336059965690311}
   - component: {fileID: 7078685664958541055}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Area Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -225,7 +225,7 @@ GameObject:
   - component: {fileID: 443326344795476932}
   - component: {fileID: 1141024367618613757}
   - component: {fileID: 1958681193}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Shotgun
   m_TagString: Shotgun
   m_Icon: {fileID: 0}
@@ -297,7 +297,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1632628541259111757}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ShootPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}

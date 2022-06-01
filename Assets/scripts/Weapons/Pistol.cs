@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Pistol : WeaponBase
 {
-
+    
     public GameObject muzzleFlash;
     public int ammoCount = 10;
     
  
     public void Start()
     {
-           
+        
         //muzzleFlash.SetActive(false);
     }
     public override void Shoot()
@@ -37,8 +37,7 @@ public class Pistol : WeaponBase
 
 
     }
-   
-   
+
     IEnumerator MuzzleFlash()
     {
         muzzleFlash.SetActive(true);

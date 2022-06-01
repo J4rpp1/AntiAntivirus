@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8912849708771874846}
   - component: {fileID: 8532421750749770000}
   - component: {fileID: 6512227137129639209}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,7 +106,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2424438923346150754}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ShootPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,7 +139,7 @@ GameObject:
   - component: {fileID: 1886772602966771626}
   - component: {fileID: 2674087534309154053}
   - component: {fileID: 433106433}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: AR
   m_TagString: Ar
   m_Icon: {fileID: 0}
@@ -210,7 +210,7 @@ GameObject:
   - component: {fileID: 8077678842421021423}
   - component: {fileID: 1044131152956698231}
   - component: {fileID: 6607631648697981586}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Area Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}

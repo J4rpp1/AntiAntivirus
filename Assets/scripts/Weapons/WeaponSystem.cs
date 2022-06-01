@@ -20,6 +20,8 @@ public class WeaponSystem : MonoBehaviour
     public bool canPickUpPistol;
     public bool canPickUpShotgun;
     public bool canPickUpAr;
+    public bool destroyWep;
+    public bool canDrop;
     public int currentWepAmmocount;
 
     [SerializeField] WeaponBase _startingWeaponPrefab = null;
@@ -51,23 +53,22 @@ public class WeaponSystem : MonoBehaviour
     {
         
 
-        if (Input.GetKeyDown(KeyCode.F) && canPickUpPistol && !equipped)
+        if (Input.GetKeyDown(KeyCode.Mouse1) && canPickUpPistol && !equipped)
         {
-            EquipWeapon(pistolPrefab);
-            equipped = true;
-            pistolEquipped = true;
+            StartCoroutine(PickupPistol());
+            StartCoroutine(DropTimer());
         }
-        if (Input.GetKeyDown(KeyCode.F) && canPickUpShotgun && !equipped)
+        if (Input.GetKeyDown(KeyCode.Mouse1) && canPickUpShotgun && !equipped)
         {
-            EquipWeapon(shotgunPrefab);
-            equipped = true;
-            shotgunEquipped = true;
+
+            StartCoroutine(PickupShotgun());
+            StartCoroutine(DropTimer());
         }
-        if (Input.GetKeyDown(KeyCode.F) && canPickUpAr && !equipped)
+        if (Input.GetKeyDown(KeyCode.Mouse1) && canPickUpAr && !equipped)
         {
-            EquipWeapon(arPrefab);
-            equipped = true;
-            arEquipped = true;
+
+            StartCoroutine(PickupAr());
+            StartCoroutine(DropTimer());
         }
         // press Space
         if (Input.GetKeyDown(KeyCode.Mouse0))
@@ -76,24 +77,27 @@ public class WeaponSystem : MonoBehaviour
             Sound(new Vector3(0, 0, 0), 7);
         }
         
-        if (pistolEquipped && Input.GetKeyDown(KeyCode.G))
+        if (canDrop && pistolEquipped && Input.GetKeyDown(KeyCode.Mouse1))
         {
+            canDrop = false;
             pistolEquipped = false;
             equipped = false;
             DropPistol();
             EquipWeapon(_startingWeaponPrefab);
 
         }
-        if (arEquipped && Input.GetKeyDown(KeyCode.G))
+        if (canDrop && arEquipped && Input.GetKeyDown(KeyCode.Mouse1))
         {
+            canDrop = false;
             arEquipped = false;
             equipped = false;
             DropAr();
             EquipWeapon(_startingWeaponPrefab);
 
         }
-        if (shotgunEquipped && Input.GetKeyDown(KeyCode.G))
+        if (canDrop && shotgunEquipped && Input.GetKeyDown(KeyCode.Mouse1))
         {
+            canDrop = false;
             shotgunEquipped = false;
             equipped = false;
             DropShotgun();
@@ -102,24 +106,59 @@ public class WeaponSystem : MonoBehaviour
         }
 
     }
-
+    IEnumerator DropTimer()
+    {
+        yield return new WaitForSeconds(0.1f);
+        canDrop = true;
+    }
+    IEnumerator PickupPistol()
+    {
+        EquipWeapon(pistolPrefab);
+        equipped = true;
+        pistolEquipped = true;
+        destroyWep = true;
+        yield return new WaitForSeconds(0.1f);
+        canPickUpPistol = false;
+        destroyWep = false;
+    }
+    IEnumerator PickupShotgun()
+    {
+        EquipWeapon(shotgunPrefab);
+        equipped = true;
+        shotgunEquipped = true;
+        destroyWep = true;
+        yield return new WaitForSeconds(0.1f);
+        canPickUpShotgun = false;
+        destroyWep = false;
+    }
+    IEnumerator PickupAr()
+    {
+        EquipWeapon(arPrefab);
+        equipped = true;
+        arEquipped = true;
+        destroyWep = true;
+        yield return new WaitForSeconds(0.1f);
+        canPickUpAr = false;
+        destroyWep = false;
+    }
     public void DropPistol()
     {
         GameObject P = Instantiate(pistolDroppable, _weaponSocket.position, _weaponSocket.rotation);
-       // P.GetComponent<Rigidbody>().AddForce(P.transform.forward * 1);
+        P.GetComponent<Rigidbody>().AddForce(P.transform.forward * 300);
     }
     public void DropShotgun()
     {
         GameObject P = Instantiate(shotgunDroppable, _weaponSocket.position, _weaponSocket.rotation);
-        // P.GetComponent<Rigidbody>().AddForce(P.transform.forward * 1);
+        // P.GetComponent<Rigidbody>().AddForce(P.transform.forward * 300);
     }
     public void DropAr()
     {
         GameObject P = Instantiate(arDroppable, _weaponSocket.position, _weaponSocket.rotation);
-        // P.GetComponent<Rigidbody>().AddForce(P.transform.forward * 1);
+        // P.GetComponent<Rigidbody>().AddForce(P.transform.forward * 300);
     }
     private void OnTriggerEnter(Collider other)
     {
+
         if (other.gameObject.tag == "Pistol")
             canPickUpPistol = true;
         if (other.gameObject.tag == "Shotgun")
