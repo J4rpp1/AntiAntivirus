@@ -149,12 +149,12 @@ public class WeaponSystem : MonoBehaviour
     public void DropShotgun()
     {
         GameObject P = Instantiate(shotgunDroppable, _weaponSocket.position, _weaponSocket.rotation);
-        // P.GetComponent<Rigidbody>().AddForce(P.transform.forward * 300);
+        P.GetComponent<Rigidbody>().AddForce(P.transform.forward * 300);
     }
     public void DropAr()
     {
         GameObject P = Instantiate(arDroppable, _weaponSocket.position, _weaponSocket.rotation);
-        // P.GetComponent<Rigidbody>().AddForce(P.transform.forward * 300);
+         P.GetComponent<Rigidbody>().AddForce(P.transform.forward * 300);
     }
     private void OnTriggerEnter(Collider other)
     {

@@ -108,7 +108,8 @@ GameObject:
   - component: {fileID: 3700129162330978593}
   - component: {fileID: -8293956079294926376}
   - component: {fileID: -4464121778847118361}
-  m_Layer: 9
+  - component: {fileID: -6306811455946513065}
+  m_Layer: 0
   m_Name: AR
   m_TagString: Ar
   m_Icon: {fileID: 0}
@@ -161,6 +162,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.1, y: 0.1, z: 0.88954}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-6306811455946513065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7569345169552333013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 601a9e84d4335c64f91326a31712940e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7686649437437516993
 GameObject:
   m_ObjectHideFlags: 0
@@ -172,7 +185,7 @@ GameObject:
   - component: {fileID: 6444642742990189668}
   - component: {fileID: 2813388234605465852}
   - component: {fileID: 8270108135110124569}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Area Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
