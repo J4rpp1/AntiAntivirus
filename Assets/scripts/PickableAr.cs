@@ -16,7 +16,7 @@ public class PickableAr : MonoBehaviour
     {
         if (weaponSystem.canPickUpAr && canDestroy && weaponSystem.destroyWep)
         {
-            Debug.Log("rikki");
+          
             Destroy(gameObject);
         }
     }

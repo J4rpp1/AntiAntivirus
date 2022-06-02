@@ -16,7 +16,7 @@ public class PickablePistol : MonoBehaviour
     {
         if (weaponSystem.canPickUpPistol && canDestroy && weaponSystem.destroyWep)
         {
-            Debug.Log("rikki");
+          
             Destroy(gameObject);
         }
     }

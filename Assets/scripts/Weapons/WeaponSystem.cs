@@ -156,6 +156,11 @@ public class WeaponSystem : MonoBehaviour
         GameObject P = Instantiate(arDroppable, _weaponSocket.position, _weaponSocket.rotation);
          P.GetComponent<Rigidbody>().AddForce(P.transform.forward * 300);
     }
+
+
+    // MUUTA OVERLAPSPHEREIKSI 
+    // MUUTA OVERLAPSPHEREIKSI 
+    // MUUTA OVERLAPSPHEREIKSI 
     private void OnTriggerEnter(Collider other)
     {
 
