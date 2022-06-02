@@ -128,6 +128,7 @@ public class WeaponSystem : MonoBehaviour
             else if (pickupColliders[0].gameObject.tag == "Ar")
                 StartCoroutine(PickupAr());
             Debug.Log(pickupColliders[0].gameObject);
+            Destroy(pickupColliders[0].gameObject);
             pickupColliders[0] = null;
 
         }
@@ -158,7 +159,7 @@ public class WeaponSystem : MonoBehaviour
     IEnumerator PickupPistol()
     {
         EquipWeapon(pistolPrefab);
-
+        
         equipped = true;
         pistolEquipped = true;
         destroyWep = true;
@@ -191,16 +192,22 @@ public class WeaponSystem : MonoBehaviour
     }
     public void DropPistol()
     {
+        canDrop = false;
+        pistolEquipped = false;
         GameObject P = Instantiate(pistolDroppable, _weaponSocket.position, _weaponSocket.rotation);
         P.GetComponent<Rigidbody>().AddForce(P.transform.forward * 300);
     }
     public void DropShotgun()
     {
+        canDrop = false;
+        shotgunEquipped = false;
         GameObject P = Instantiate(shotgunDroppable, _weaponSocket.position, _weaponSocket.rotation);
         P.GetComponent<Rigidbody>().AddForce(P.transform.forward * 300);
     }
     public void DropAr()
     {
+        canDrop = false;
+        shotgunEquipped = false;
         GameObject P = Instantiate(arDroppable, _weaponSocket.position, _weaponSocket.rotation);
          P.GetComponent<Rigidbody>().AddForce(P.transform.forward * 300);
     }
