@@ -7,8 +7,11 @@ public class WeaponSystem : MonoBehaviour
 {
     public static WeaponSystem instance;
 
-    public Transform playerLocation;
-
+ 
+    public int maxPickupColliders = 1;
+    Collider[] pickupColliders;
+    public float pickupRadius = 0.5f;
+    [SerializeField] LayerMask pickupMask;
     public float pickupDistance = 10f;
     
     public bool equipped;
@@ -16,7 +19,7 @@ public class WeaponSystem : MonoBehaviour
     public bool shotgunEquipped;
     public bool arEquipped;
 
-    public Transform player;
+    
     public bool canPickUpPistol;
     public bool canPickUpShotgun;
     public bool canPickUpAr;
@@ -41,8 +44,10 @@ public class WeaponSystem : MonoBehaviour
     // each new weapon will have its own behavior!
     public WeaponBase EquippedWeapon { get; private set; }
 
+    
     private void Awake()
     {
+        pickupColliders = new Collider[maxPickupColliders];
         instance = this;
 
         if (_startingWeaponPrefab != null)
@@ -53,7 +58,7 @@ public class WeaponSystem : MonoBehaviour
     {
         
 
-        if (Input.GetKeyDown(KeyCode.Mouse1) && canPickUpPistol && !equipped)
+        /*if (Input.GetKeyDown(KeyCode.Mouse1) && canPickUpPistol && !equipped)
         {
             StartCoroutine(PickupPistol());
             StartCoroutine(DropTimer());
@@ -69,14 +74,16 @@ public class WeaponSystem : MonoBehaviour
 
             StartCoroutine(PickupAr());
             StartCoroutine(DropTimer());
-        }
-        // press Space
+        }*/
+        
+
+
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             ShootWeapon();
             Sound(new Vector3(0, 0, 0), 7);
         }
-        
+       /* 
         if (canDrop && pistolEquipped && Input.GetKeyDown(KeyCode.Mouse1))
         {
             canDrop = false;
@@ -103,8 +110,45 @@ public class WeaponSystem : MonoBehaviour
             DropShotgun();
             EquipWeapon(_startingWeaponPrefab);
 
-        }
+        }*/
+        if (Input.GetKeyDown(KeyCode.Mouse1)) 
+        TryPickupWeapon();
+    }
+    void TryPickupWeapon()
+    {
+        
+        
+        int numColliders = Physics.OverlapSphereNonAlloc(transform.position, pickupRadius, pickupColliders, pickupMask);
+        if(pickupColliders[0] != null)
+        {
+            if (pickupColliders[0].gameObject.tag == "Pistol")
+                StartCoroutine(PickupPistol());
+            else if (pickupColliders[0].gameObject.tag == "Shotgun")
+                StartCoroutine(PickupShotgun());
+            else if (pickupColliders[0].gameObject.tag == "Ar")
+                StartCoroutine(PickupAr());
+            Debug.Log(pickupColliders[0].gameObject);
+            pickupColliders[0] = null;
 
+        }
+       
+            DropWeapon();
+           
+        
+    }
+    void DropWeapon()
+    {
+        if(canDrop)
+        {
+        if (pistolEquipped)
+            DropPistol();
+        else if (shotgunEquipped)
+            DropShotgun();
+        else if (arEquipped)
+            DropAr();
+        EquipWeapon(_startingWeaponPrefab);
+
+        }
     }
     IEnumerator DropTimer()
     {
@@ -114,12 +158,14 @@ public class WeaponSystem : MonoBehaviour
     IEnumerator PickupPistol()
     {
         EquipWeapon(pistolPrefab);
+
         equipped = true;
         pistolEquipped = true;
         destroyWep = true;
         yield return new WaitForSeconds(0.1f);
         canPickUpPistol = false;
         destroyWep = false;
+        canDrop = true;
     }
     IEnumerator PickupShotgun()
     {
@@ -130,6 +176,7 @@ public class WeaponSystem : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         canPickUpShotgun = false;
         destroyWep = false;
+        canDrop = true;
     }
     IEnumerator PickupAr()
     {
@@ -140,6 +187,7 @@ public class WeaponSystem : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         canPickUpAr = false;
         destroyWep = false;
+        canDrop = true;
     }
     public void DropPistol()
     {
@@ -158,10 +206,9 @@ public class WeaponSystem : MonoBehaviour
     }
 
 
-    // MUUTA OVERLAPSPHEREIKSI 
-    // MUUTA OVERLAPSPHEREIKSI 
-    // MUUTA OVERLAPSPHEREIKSI 
-    private void OnTriggerEnter(Collider other)
+ 
+    
+   /* private void OnTriggerEnter(Collider other)
     {
 
         if (other.gameObject.tag == "Pistol")
@@ -179,7 +226,7 @@ public class WeaponSystem : MonoBehaviour
             canPickUpShotgun = false;
         if (other.gameObject.tag == "Ar")
             canPickUpAr = false;
-    }
+    }*/
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;

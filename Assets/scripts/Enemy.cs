@@ -159,10 +159,10 @@ public class Enemy : MonoBehaviour, IDamageable
             timer3 = 0;
             Debug.Log("n‰kee pelaajan");
             alertLevel = 2;
-            heardSoundPosition = weaponSystem.playerLocation;
-            //agent.destination = weaponSystem.playerLocation.position;
+            heardSoundPosition = weaponSystem.transform;
+            //agent.destination = weaponSystem.transform.position;
             agent.destination = heardSoundPosition.position;
-            Vector3 targetDirection = weaponSystem.playerLocation.position - transform.position;
+            Vector3 targetDirection = weaponSystem.transform.position - transform.position;
             float singleStep = rotateSpeed * Time.deltaTime;
             Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
             transform.rotation = Quaternion.LookRotation(newDirection);
@@ -265,7 +265,7 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         alertStarted = false;
         Debug.Log("kuulee ‰‰nen");
-        heardSoundPosition = weaponSystem.playerLocation;
+        heardSoundPosition = weaponSystem.transform;
         alertLevel = 2;
     }
     private IEnumerator FOVRoutine()

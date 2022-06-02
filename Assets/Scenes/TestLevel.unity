@@ -1253,6 +1253,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1270641521, guid: 93be59e5917ac4645ae34feb536dfbec, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 216101726721901633, guid: 93be59e5917ac4645ae34feb536dfbec,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1442,6 +1446,11 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 6912211409407346267, guid: 93be59e5917ac4645ae34feb536dfbec,
         type: 3}
+      propertyPath: pickupRadius
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6912211409407346267, guid: 93be59e5917ac4645ae34feb536dfbec,
+        type: 3}
       propertyPath: pistolPrefab
       value: 
       objectReference: {fileID: 8251731071600802478, guid: ce1888157a9923b41aa2131e00668c64,
@@ -1466,6 +1475,11 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 6912211409407346267, guid: 93be59e5917ac4645ae34feb536dfbec,
         type: 3}
+      propertyPath: pickupMask.m_Bits
+      value: 4096
+      objectReference: {fileID: 0}
+    - target: {fileID: 6912211409407346267, guid: 93be59e5917ac4645ae34feb536dfbec,
+        type: 3}
       propertyPath: _startingWeaponPrefab
       value: 
       objectReference: {fileID: 2674087534309154053, guid: 1288a3fce18ed2644a956c0b482c1b60,
@@ -1475,7 +1489,8 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 1044044314}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8101054577109723421, guid: 93be59e5917ac4645ae34feb536dfbec, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 93be59e5917ac4645ae34feb536dfbec, type: 3}
 --- !u!1001 &1225287397
 PrefabInstance:
