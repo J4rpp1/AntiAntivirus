@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Knife : WeaponBase
 {
-    public float radius = 1f;
+    public float radius = 0.5f;
+    [SerializeField] LayerMask enemyLayer;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,7 +14,7 @@ public class Knife : WeaponBase
     public override void Shoot()
     {
 
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, radius, 11 );
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, radius, enemyLayer);
         foreach (var hitCollider in hitColliders)
         {
             IDamageable idamageable = hitCollider.gameObject.GetComponent<IDamageable>();
