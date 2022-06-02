@@ -18,7 +18,7 @@ public class WeaponSystem : MonoBehaviour
     public bool pistolEquipped;
     public bool shotgunEquipped;
     public bool arEquipped;
-
+    public bool knifeEquipped;
     
     public bool canPickUpPistol;
     public bool canPickUpShotgun;
@@ -47,6 +47,7 @@ public class WeaponSystem : MonoBehaviour
     
     private void Awake()
     {
+        knifeEquipped = true;
         pickupColliders = new Collider[maxPickupColliders];
         instance = this;
 
@@ -81,6 +82,7 @@ public class WeaponSystem : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             ShootWeapon();
+            if(!knifeEquipped)
             Sound(new Vector3(0, 0, 0), 7);
         }
        /* 
@@ -159,7 +161,7 @@ public class WeaponSystem : MonoBehaviour
     IEnumerator PickupPistol()
     {
         EquipWeapon(pistolPrefab);
-        
+        knifeEquipped = false;
         equipped = true;
         pistolEquipped = true;
         destroyWep = true;
@@ -171,6 +173,7 @@ public class WeaponSystem : MonoBehaviour
     IEnumerator PickupShotgun()
     {
         EquipWeapon(shotgunPrefab);
+        knifeEquipped = false;
         equipped = true;
         shotgunEquipped = true;
         destroyWep = true;
@@ -182,6 +185,7 @@ public class WeaponSystem : MonoBehaviour
     IEnumerator PickupAr()
     {
         EquipWeapon(arPrefab);
+        knifeEquipped = false;
         equipped = true;
         arEquipped = true;
         destroyWep = true;
@@ -192,6 +196,7 @@ public class WeaponSystem : MonoBehaviour
     }
     public void DropPistol()
     {
+        knifeEquipped = true;
         canDrop = false;
         pistolEquipped = false;
         GameObject P = Instantiate(pistolDroppable, _weaponSocket.position, _weaponSocket.rotation);
@@ -199,6 +204,7 @@ public class WeaponSystem : MonoBehaviour
     }
     public void DropShotgun()
     {
+        knifeEquipped = true;
         canDrop = false;
         shotgunEquipped = false;
         GameObject P = Instantiate(shotgunDroppable, _weaponSocket.position, _weaponSocket.rotation);
@@ -206,6 +212,7 @@ public class WeaponSystem : MonoBehaviour
     }
     public void DropAr()
     {
+        knifeEquipped = true;
         canDrop = false;
         shotgunEquipped = false;
         GameObject P = Instantiate(arDroppable, _weaponSocket.position, _weaponSocket.rotation);

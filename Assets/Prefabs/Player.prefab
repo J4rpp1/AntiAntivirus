@@ -254,7 +254,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1007933011138905835}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.81}
+  m_LocalPosition: {x: 0, y: 0, z: 0.58}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -538,19 +538,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 364aac3567c0c43478dde5a2bade4e2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerLocation: {fileID: 5900403712513307409}
+  maxPickupColliders: 1
+  pickupRadius: 0.5
+  pickupMask:
+    serializedVersion: 2
+    m_Bits: 0
+  pickupDistance: 10
   equipped: 0
-  pickUpRange: 0
-  player: {fileID: 0}
+  pistolEquipped: 0
+  shotgunEquipped: 0
+  arEquipped: 0
+  knifeEquipped: 0
+  canPickUpPistol: 0
+  canPickUpShotgun: 0
+  canPickUpAr: 0
+  destroyWep: 0
+  canDrop: 0
+  currentWepAmmocount: 0
   _startingWeaponPrefab: {fileID: 2674087534309154053, guid: 1288a3fce18ed2644a956c0b482c1b60,
     type: 3}
-  _slot01WeaponPrefab: {fileID: 8251731071600802478, guid: ce1888157a9923b41aa2131e00668c64,
-    type: 3}
-  _slot02WeaponPrefab: {fileID: 1141024367618613757, guid: 0f51011baa8c06848929abd2052e86f7,
-    type: 3}
+  pistolPrefab: {fileID: 0}
+  shotgunPrefab: {fileID: 0}
+  arPrefab: {fileID: 0}
   _weaponSocket: {fileID: 708193951433379738}
   gizmoPosition: {x: 0, y: 0, z: 0}
   radius: 7
+  pistolDroppable: {fileID: 0}
+  shotgunDroppable: {fileID: 0}
+  arDroppable: {fileID: 0}
 --- !u!136 &1270641521
 CapsuleCollider:
   m_ObjectHideFlags: 0
