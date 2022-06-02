@@ -119,6 +119,7 @@ public class WeaponSystem : MonoBehaviour
         
         
         int numColliders = Physics.OverlapSphereNonAlloc(transform.position, pickupRadius, pickupColliders, pickupMask);
+            DropWeapon();
         if(pickupColliders[0] != null)
         {
             if (pickupColliders[0].gameObject.tag == "Pistol")
@@ -133,7 +134,6 @@ public class WeaponSystem : MonoBehaviour
 
         }
        
-            DropWeapon();
            
         
     }
