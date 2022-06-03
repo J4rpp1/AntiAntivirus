@@ -267,11 +267,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd0b1e84b789ab44b37c13d371b86ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pistolDrop: {fileID: 1833634473967492148, guid: 9499e5af562d47e4c806b225bb011b01,
+  pistolDrop: {fileID: 3070489638275008216, guid: aae5f57ed6f79194e892c604e4c70c9a,
     type: 3}
-  shotgunDrop: {fileID: 5889491352029253527, guid: 183bdb2569b1ce34e8d0c62e19f41532,
+  shotgunDrop: {fileID: 5319185964071123420, guid: 7d3de8e300b700243a34d2c2dc6aef4f,
     type: 3}
-  ArDrop: {fileID: 7569345169552333013, guid: b7d89dbf421414a4b887212439ab5f33, type: 3}
+  ArDrop: {fileID: 8082582249178129205, guid: 25aed4123e1d2774b961d2b4ac363c9b, type: 3}
   patrolEnemy: 0
   points: []
   alertStarted: 0
@@ -297,9 +297,9 @@ MonoBehaviour:
   isPistolEnemy: 0
   isShotGunEnemy: 0
   isArEnemy: 0
-  pistol: {fileID: 8251731071600802478, guid: ce1888157a9923b41aa2131e00668c64, type: 3}
-  shotgun: {fileID: 1141024367618613757, guid: 0f51011baa8c06848929abd2052e86f7, type: 3}
-  assaultRifle: {fileID: 2674087534309154053, guid: 1288a3fce18ed2644a956c0b482c1b60,
+  pistol: {fileID: 7246210774740202199, guid: c4ad5b83612d0914ea61292f66349998, type: 3}
+  shotgun: {fileID: 1590956039, guid: 3e0d4267cd30ec543b5478ffb91f5641, type: 3}
+  assaultRifle: {fileID: 6875003803894707106, guid: 1cfd9e0ef6cf65147935f0e35884e7db,
     type: 3}
   notShooting: 0
   fireRate: 0.2

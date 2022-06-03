@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class Pickable : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public bool isPistol;
+    public bool isShotgun;
+    public bool isAr;
+    public int currentAmmo;
+
     void Start()
     {
         
