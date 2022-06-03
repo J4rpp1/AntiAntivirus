@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8388030633051144990}
   - component: {fileID: 6177378563899635510}
-  - component: {fileID: 5225904957707465835}
   m_Layer: 0
   m_Name: WeaponSprite
   m_TagString: Untagged
@@ -85,19 +84,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5225904957707465835
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1900778037136600668}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d75c5425230e3784a89ef700b785155e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Camera: {fileID: 0}
 --- !u!1 &4769861985023794807
 GameObject:
   m_ObjectHideFlags: 0
