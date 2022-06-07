@@ -18,13 +18,14 @@ public class Movement : MonoBehaviour
 	float sprintSpeed;
 	Rigidbody rb;
     Vector3 moveDirection;
-    float walkAcceleration = 1f;
+   
 	void Start()
 	{
         weaponSystem = GameObject.FindObjectOfType<WeaponSystem>();
 		rb = GetComponent<Rigidbody>();
         mainCamera = Camera.main;
         // sprintSpeed = walkSpeed + (walkSpeed / 2);
+        
     }
 
 	void FixedUpdate()
@@ -39,10 +40,10 @@ public class Movement : MonoBehaviour
 		
 
 		moveDirection = new Vector3(
-			Input.GetAxisRaw("Horizontal"),rb.velocity.y,
+			Input.GetAxisRaw("Horizontal"),0f,
 		 Input.GetAxisRaw("Vertical")).normalized * walkSpeed;
 
-        rb.velocity = Vector3.MoveTowards(rb.velocity, moveDirection, walkAcceleration);
+        rb.velocity = Vector3.MoveTowards(rb.velocity, moveDirection, walkSpeed / 8);
 		Aim();
         /*Vector3 mousePosition = Input.mousePosition;
 		Vector3 targetPosition = Camera.main.ScreenToWorldPoint(mousePosition);
