@@ -8,7 +8,7 @@ public class Movement : MonoBehaviour
     [SerializeField] private LayerMask groundMask;
     private Camera mainCamera;
 
-    public float walkSpeed = 5f;
+    public float walkSpeed = 6f;
 	public Transform target;
 	
 
@@ -17,7 +17,8 @@ public class Movement : MonoBehaviour
 
 	float sprintSpeed;
 	Rigidbody rb;
-
+    Vector3 moveDirection;
+    float walkAcceleration = 1f;
 	void Start()
 	{
         weaponSystem = GameObject.FindObjectOfType<WeaponSystem>();
@@ -37,20 +38,19 @@ public class Movement : MonoBehaviour
                     walkSpeed = 6f;
 		
 
-		rb.velocity = new Vector3(
-			Mathf.Lerp(0, Input.GetAxis("Horizontal") * curSpeed, 0.8f),
-			rb.velocity.y,
-			Mathf.Lerp(0, Input.GetAxis("Vertical") * curSpeed, 0.8f)
-		);
+		moveDirection = new Vector3(
+			Input.GetAxisRaw("Horizontal"),rb.velocity.y,
+		 Input.GetAxisRaw("Vertical")).normalized * walkSpeed;
 
+        rb.velocity = Vector3.MoveTowards(rb.velocity, moveDirection, walkAcceleration);
 		Aim();
-		/*Vector3 mousePosition = Input.mousePosition;
+        /*Vector3 mousePosition = Input.mousePosition;
 		Vector3 targetPosition = Camera.main.ScreenToWorldPoint(mousePosition);
 		Vector3 relativePos = targetPosition - transform.position;
 
 		Quaternion rotation = Quaternion.LookRotation(relativePos);
 		transform.rotation = rotation;*/
-
+        Debug.Log(rb.velocity);
 	}
 
 
