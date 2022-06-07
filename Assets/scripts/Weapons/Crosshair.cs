@@ -9,7 +9,7 @@ public class Crosshair : MonoBehaviour
     private Vector3 mousePosition;
     public float moveSpeed = 0.1f;
     public bool hideCrosshair;
-   
+    public bool locked;
     [SerializeField] private Camera mainCamera;
 
     void Start()
@@ -24,9 +24,16 @@ public class Crosshair : MonoBehaviour
         //transform.position = Input.mousePosition;
        
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-        if(Physics.Raycast(ray, out RaycastHit raycastHit))
+        if(Physics.Raycast(ray, out RaycastHit raycastHit) && !locked)
         {
             transform.position = raycastHit.point;
         }
+        /*if (Input.GetKeyDown(KeyCode.F))
+        {
+            locked = true;
+        }
+
+       // if (Input.GetKeyDown(KeyCode.F) && locked)
+            //locked = false;*/
     }
 }
