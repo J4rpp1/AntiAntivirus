@@ -26,6 +26,10 @@ public class MainMenu : MonoBehaviour
         mainMenuUi.SetActive(true);
         
     }
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
     public void Level1()
     {
         SceneManager.LoadScene(1);

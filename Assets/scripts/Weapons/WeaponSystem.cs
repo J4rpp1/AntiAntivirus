@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using TMPro;
 
 public class WeaponSystem : MonoBehaviour
 {
@@ -13,7 +14,11 @@ public class WeaponSystem : MonoBehaviour
     public float pickupRadius = 0.5f;
     [SerializeField] LayerMask pickupMask;
     public float pickupDistance = 10f;
-    
+
+    public GameObject pistolImage;
+    public GameObject shotgunImage;
+    public GameObject arImage;
+
     public bool equipped;
     public bool pistolEquipped;
     public bool shotgunEquipped;
@@ -26,6 +31,7 @@ public class WeaponSystem : MonoBehaviour
     public bool destroyWep;
     public bool canDrop;
     public int currentWepAmmocount;
+    public TMP_Text ammoText;
 
     [SerializeField] WeaponBase _startingWeaponPrefab = null;
     [SerializeField] WeaponBase pistolPrefab = null;
@@ -57,7 +63,7 @@ public class WeaponSystem : MonoBehaviour
 
     private void Update()
     {
-        
+
 
         /*if (Input.GetKeyDown(KeyCode.Mouse1) && canPickUpPistol && !equipped)
         {
@@ -76,43 +82,27 @@ public class WeaponSystem : MonoBehaviour
             StartCoroutine(PickupAr());
             StartCoroutine(DropTimer());
         }*/
-        
 
 
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (knifeEquipped)
+        {
+            currentWepAmmocount = 1;
+            ammoText.text = "";
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse0) && currentWepAmmocount > 0)
         {
             ShootWeapon();
             if(!knifeEquipped)
             Sound(new Vector3(0, 0, 0), 7);
         }
-       /* 
-        if (canDrop && pistolEquipped && Input.GetKeyDown(KeyCode.Mouse1))
-        {
-            canDrop = false;
-            pistolEquipped = false;
-            equipped = false;
-            DropPistol();
-            EquipWeapon(_startingWeaponPrefab);
-
-        }
-        if (canDrop && arEquipped && Input.GetKeyDown(KeyCode.Mouse1))
-        {
-            canDrop = false;
-            arEquipped = false;
-            equipped = false;
-            DropAr();
-            EquipWeapon(_startingWeaponPrefab);
-
-        }
-        if (canDrop && shotgunEquipped && Input.GetKeyDown(KeyCode.Mouse1))
-        {
-            canDrop = false;
-            shotgunEquipped = false;
-            equipped = false;
-            DropShotgun();
-            EquipWeapon(_startingWeaponPrefab);
-
-        }*/
+        
+        if (pistolEquipped)
+            ammoText.text = currentWepAmmocount.ToString() + "/10";
+        if(shotgunEquipped)
+            ammoText.text = currentWepAmmocount.ToString() + "/6";
+        if(arEquipped)
+            ammoText.text = currentWepAmmocount.ToString() + "/30";
         if (Input.GetKeyDown(KeyCode.Mouse1)) 
         TryPickupWeapon();
     }
@@ -124,6 +114,8 @@ public class WeaponSystem : MonoBehaviour
             DropWeapon();
         if(pickupColliders[0] != null)
         {
+            var GetAmmo = pickupColliders[0].GetComponent<Pickable>();
+            currentWepAmmocount = GetAmmo.currentAmmo;
             if (pickupColliders[0].gameObject.tag == "Pistol")
                 StartCoroutine(PickupPistol());
             else if (pickupColliders[0].gameObject.tag == "Shotgun")
@@ -161,6 +153,7 @@ public class WeaponSystem : MonoBehaviour
     IEnumerator PickupPistol()
     {
         EquipWeapon(pistolPrefab);
+        pistolImage.SetActive(true);
         knifeEquipped = false;
         equipped = true;
         pistolEquipped = true;
@@ -173,6 +166,7 @@ public class WeaponSystem : MonoBehaviour
     IEnumerator PickupShotgun()
     {
         EquipWeapon(shotgunPrefab);
+        shotgunImage.SetActive(true);
         knifeEquipped = false;
         equipped = true;
         shotgunEquipped = true;
@@ -185,6 +179,7 @@ public class WeaponSystem : MonoBehaviour
     IEnumerator PickupAr()
     {
         EquipWeapon(arPrefab);
+        arImage.SetActive(true);
         knifeEquipped = false;
         equipped = true;
         arEquipped = true;
@@ -196,27 +191,36 @@ public class WeaponSystem : MonoBehaviour
     }
     public void DropPistol()
     {
+        pistolImage.SetActive(false);
         knifeEquipped = true;
         canDrop = false;
         pistolEquipped = false;
         GameObject P = Instantiate(pistolDroppable, _weaponSocket.position, _weaponSocket.rotation);
         P.GetComponent<Rigidbody>().AddForce(P.transform.forward * 300);
+        var GunScript = P.GetComponent<Pickable>();
+        GunScript.currentAmmo = currentWepAmmocount;
     }
     public void DropShotgun()
     {
+        shotgunImage.SetActive(false);
         knifeEquipped = true;
         canDrop = false;
         shotgunEquipped = false;
         GameObject P = Instantiate(shotgunDroppable, _weaponSocket.position, _weaponSocket.rotation);
         P.GetComponent<Rigidbody>().AddForce(P.transform.forward * 300);
+        var GunScript = P.GetComponent<Pickable>();
+        GunScript.currentAmmo = currentWepAmmocount;
     }
     public void DropAr()
     {
+        arImage.SetActive(false);
         knifeEquipped = true;
         canDrop = false;
-        shotgunEquipped = false;
+        arEquipped = false;
         GameObject P = Instantiate(arDroppable, _weaponSocket.position, _weaponSocket.rotation);
          P.GetComponent<Rigidbody>().AddForce(P.transform.forward * 300);
+        var GunScript = P.GetComponent<Pickable>();
+        GunScript.currentAmmo = currentWepAmmocount;
     }
 
 
@@ -273,7 +277,8 @@ public class WeaponSystem : MonoBehaviour
 
     public void ShootWeapon()
     {
-       
+        if(!knifeEquipped  && !arEquipped)
+            currentWepAmmocount = currentWepAmmocount - 1;
         EquippedWeapon.Shoot();
     }
 }

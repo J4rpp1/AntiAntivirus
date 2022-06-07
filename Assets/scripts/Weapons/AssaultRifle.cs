@@ -4,10 +4,17 @@ using UnityEngine;
 
 public class AssaultRifle : WeaponBase
 {
+    WeaponSystem weaponSystem;
     public float fireRate;
     public GameObject muzzleFlash;
     public Vector3 gizmoPosition;
     public float radius = 5;
+
+
+    private void Start()
+    {
+        weaponSystem = GameObject.FindObjectOfType<WeaponSystem>();
+    }
     public override void Shoot()
     {
         // instantiating bullet
@@ -23,7 +30,7 @@ public class AssaultRifle : WeaponBase
     
     IEnumerator Shooting()
     {
-       
+        weaponSystem.currentWepAmmocount = weaponSystem.currentWepAmmocount - 1;
         muzzleFlash.SetActive(true);
         Projectile newProjectile = Instantiate
             (Projectile, ProjectileSpawnLocation.position,
@@ -39,7 +46,7 @@ public class AssaultRifle : WeaponBase
         yield return new WaitForSeconds(fireRate);
         muzzleFlash.SetActive(false);
         AudioSource.PlayClipAtPoint(ShootSound, ProjectileSpawnLocation.position);
-        if (Input.GetKey(KeyCode.Mouse0))
+        if (Input.GetKey(KeyCode.Mouse0) && weaponSystem.currentWepAmmocount > 0)
         {
             StartCoroutine(Shooting());
         }

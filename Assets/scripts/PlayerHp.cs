@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerHp : MonoBehaviour, IDamageable
 {
+
     public int currentHp;
     public int maxHp;
 

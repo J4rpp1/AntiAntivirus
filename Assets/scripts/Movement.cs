@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
+    WeaponSystem weaponSystem;
     [SerializeField] private LayerMask groundMask;
     private Camera mainCamera;
 
@@ -19,6 +20,7 @@ public class Movement : MonoBehaviour
 
 	void Start()
 	{
+        weaponSystem = GameObject.FindObjectOfType<WeaponSystem>();
 		rb = GetComponent<Rigidbody>();
         mainCamera = Camera.main;
         // sprintSpeed = walkSpeed + (walkSpeed / 2);
@@ -29,7 +31,12 @@ public class Movement : MonoBehaviour
 		curSpeed = walkSpeed;
 		maxSpeed = curSpeed;
 
-		// the movement magic
+        if (weaponSystem.knifeEquipped)
+            walkSpeed = 8.5f;
+        if (!weaponSystem.knifeEquipped)
+                    walkSpeed = 6f;
+		
+
 		rb.velocity = new Vector3(
 			Mathf.Lerp(0, Input.GetAxis("Horizontal") * curSpeed, 0.8f),
 			rb.velocity.y,
