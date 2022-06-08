@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5826045897085414609}
   - component: {fileID: 5826045897085414606}
   - component: {fileID: 5826045897085414607}
-  m_Layer: 10
+  m_Layer: 8
   m_Name: 1x1WallCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
