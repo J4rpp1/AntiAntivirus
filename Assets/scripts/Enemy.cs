@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour, IDamageable
 {
+    PauseMenu pauseMenu;
 
     [Header("Pickable weapons")]
     public GameObject pistolDrop;
@@ -84,7 +85,7 @@ public class Enemy : MonoBehaviour, IDamageable
     }
     private void Awake()
     {
-
+        pauseMenu = GameObject.FindObjectOfType<PauseMenu>();
         notShooting = true;
        
 
@@ -146,14 +147,14 @@ public class Enemy : MonoBehaviour, IDamageable
     // Update is called once per frame
     void Update()
     {
-        if (canSeePlayer && notShooting)
+        if (canSeePlayer && notShooting && !pauseMenu.pause)
         {
             Debug.Log("saa ampua");
             StartCoroutine(Shoot());
 
         }
         //näkee pelaajan
-        if(canSeePlayer)
+        if(canSeePlayer && !pauseMenu.pause)
         {
             timer = 0;
             timer3 = 0;
@@ -194,7 +195,7 @@ public class Enemy : MonoBehaviour, IDamageable
         }
       
         //StartCoroutine(LookAround());
-        if (canSeePlayer)
+        if (canSeePlayer && !pauseMenu.pause)
         {
             canStartIdle = false;
             //Debug.Log("pysäytä");
@@ -212,7 +213,7 @@ public class Enemy : MonoBehaviour, IDamageable
                 Instantiate(ArDrop, transform.position, transform.rotation);
             Destroy(gameObject);
         }
-        if (!agent.pathPending && agent.remainingDistance < 0.5f && patrolEnemy && alertLevel == 0)
+        if (!agent.pathPending && agent.remainingDistance < 0.5f && patrolEnemy && alertLevel == 0 && !pauseMenu.pause)
             GotoNextPoint();
 
         if (alertLevel == 1 && !alertStarted && !canSeePlayer)

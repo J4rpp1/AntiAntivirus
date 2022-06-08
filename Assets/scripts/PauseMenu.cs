@@ -4,13 +4,14 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
+    public static PauseMenu instance;
+    
     [SerializeField] AudioClip clickSound;
     public GameObject pauseMenuUi;
-    public static PauseMenu instance;
     public bool pause;
     void Start()
     {
-
+        Time.timeScale = 1;
         pause = false;
         pauseMenuUi.SetActive(false);
     }
@@ -22,7 +23,7 @@ public class PauseMenu : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P) && !pause)
+        if (Input.GetKeyDown(KeyCode.Escape) && !pause || Input.GetKeyDown(KeyCode.P) && !pause)
         {
             Cursor.visible = true;
             pauseMenuUi.SetActive(true);

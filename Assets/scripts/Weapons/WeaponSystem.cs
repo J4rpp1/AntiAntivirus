@@ -7,7 +7,7 @@ using TMPro;
 public class WeaponSystem : MonoBehaviour
 {
     public static WeaponSystem instance;
-
+    PauseMenu pauseMenu;
  
     public int maxPickupColliders = 1;
     Collider[] pickupColliders;
@@ -53,6 +53,7 @@ public class WeaponSystem : MonoBehaviour
     
     private void Awake()
     {
+        pauseMenu = GameObject.FindObjectOfType<PauseMenu>();
         knifeEquipped = true;
         pickupColliders = new Collider[maxPickupColliders];
         instance = this;
@@ -90,7 +91,7 @@ public class WeaponSystem : MonoBehaviour
             ammoText.text = "";
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && currentWepAmmocount > 0)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && currentWepAmmocount > 0 && !pauseMenu.pause)
         {
             ShootWeapon();
             if(!knifeEquipped)
