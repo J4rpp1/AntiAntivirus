@@ -6,7 +6,7 @@ public class Pistol : WeaponBase
 {
     
     public GameObject muzzleFlash;
-    public int ammoCount = 10;
+ 
     
  
     public void Start()

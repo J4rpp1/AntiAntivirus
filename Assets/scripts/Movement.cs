@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
+    LevelSystem levelSystem;
     WeaponSystem weaponSystem;
     [SerializeField] private LayerMask groundMask;
     private Camera mainCamera;
@@ -21,6 +22,7 @@ public class Movement : MonoBehaviour
    
 	void Start()
 	{
+        levelSystem = GameObject.FindObjectOfType<LevelSystem>();
         weaponSystem = GameObject.FindObjectOfType<WeaponSystem>();
 		rb = GetComponent<Rigidbody>();
         mainCamera = Camera.main;
@@ -38,6 +40,8 @@ public class Movement : MonoBehaviour
         if (!weaponSystem.knifeEquipped)
                     walkSpeed = 6f;
 		
+        if(!levelSystem.planning)
+        {
 
 		moveDirection = new Vector3(
 			Input.GetAxisRaw("Horizontal"),0f,
@@ -45,13 +49,14 @@ public class Movement : MonoBehaviour
 
         rb.velocity = Vector3.MoveTowards(rb.velocity, moveDirection, walkSpeed / 8);
 		Aim();
+        }
         /*Vector3 mousePosition = Input.mousePosition;
 		Vector3 targetPosition = Camera.main.ScreenToWorldPoint(mousePosition);
 		Vector3 relativePos = targetPosition - transform.position;
 
 		Quaternion rotation = Quaternion.LookRotation(relativePos);
 		transform.rotation = rotation;*/
-        Debug.Log(rb.velocity);
+       
 	}
 
 

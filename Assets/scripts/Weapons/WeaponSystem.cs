@@ -8,7 +8,8 @@ public class WeaponSystem : MonoBehaviour
 {
     public static WeaponSystem instance;
     PauseMenu pauseMenu;
- 
+    LevelSystem levelSystem;
+    public AudioClip noAmmo;
     public int maxPickupColliders = 1;
     Collider[] pickupColliders;
     public float pickupRadius = 0.5f;
@@ -18,6 +19,9 @@ public class WeaponSystem : MonoBehaviour
     public GameObject pistolImage;
     public GameObject shotgunImage;
     public GameObject arImage;
+
+    public GameObject shieldObj;
+    public int shield;
 
     public bool equipped;
     public bool pistolEquipped;
@@ -54,6 +58,7 @@ public class WeaponSystem : MonoBehaviour
     private void Awake()
     {
         pauseMenu = GameObject.FindObjectOfType<PauseMenu>();
+        levelSystem = GameObject.FindObjectOfType<LevelSystem>();
         knifeEquipped = true;
         pickupColliders = new Collider[maxPickupColliders];
         instance = this;
@@ -91,13 +96,15 @@ public class WeaponSystem : MonoBehaviour
             ammoText.text = "";
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && currentWepAmmocount > 0 && !pauseMenu.pause)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && currentWepAmmocount > 0 && !pauseMenu.pause && !levelSystem.planning)
         {
             ShootWeapon();
             if(!knifeEquipped)
             Sound(new Vector3(0, 0, 0), 7);
         }
-        
+        else if(currentWepAmmocount == 0 && (Input.GetKeyDown(KeyCode.Mouse0)) && !pauseMenu.pause && !levelSystem.planning)
+            AudioSource.PlayClipAtPoint(noAmmo,transform.position);
+
         if (pistolEquipped)
             ammoText.text = currentWepAmmocount.ToString() + "/10";
         if(shotgunEquipped)
@@ -106,6 +113,10 @@ public class WeaponSystem : MonoBehaviour
             ammoText.text = currentWepAmmocount.ToString() + "/30";
         if (Input.GetKeyDown(KeyCode.Mouse1)) 
         TryPickupWeapon();
+
+        if (shield == 0)
+            shieldObj.SetActive(false);
+        
     }
     void TryPickupWeapon()
     {
@@ -117,6 +128,7 @@ public class WeaponSystem : MonoBehaviour
         {
             var GetAmmo = pickupColliders[0].GetComponent<Pickable>();
             currentWepAmmocount = GetAmmo.currentAmmo;
+            shield = GetAmmo.shield;
             if (pickupColliders[0].gameObject.tag == "Pistol")
                 StartCoroutine(PickupPistol());
             else if (pickupColliders[0].gameObject.tag == "Shotgun")
@@ -126,10 +138,10 @@ public class WeaponSystem : MonoBehaviour
             Debug.Log(pickupColliders[0].gameObject);
             Destroy(pickupColliders[0].gameObject);
             pickupColliders[0] = null;
-
+            if (shield == 1)
+                shieldObj.SetActive(true);
         }
-       
-           
+
         
     }
     void DropWeapon()
@@ -200,6 +212,8 @@ public class WeaponSystem : MonoBehaviour
         P.GetComponent<Rigidbody>().AddForce(P.transform.forward * 300);
         var GunScript = P.GetComponent<Pickable>();
         GunScript.currentAmmo = currentWepAmmocount;
+        GunScript.shield = shield;
+        shield = 0;
     }
     public void DropShotgun()
     {

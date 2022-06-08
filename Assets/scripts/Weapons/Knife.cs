@@ -25,7 +25,7 @@ public class Knife : WeaponBase
         }
 
         //‰‰ni
-       // AudioSource.PlayClipAtPoint(ShootSound, transform.position);
+        AudioSource.PlayClipAtPoint(ShootSound, transform.position);
 
 
         /*

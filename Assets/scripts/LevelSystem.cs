@@ -8,9 +8,11 @@ public class LevelSystem : MonoBehaviour
     public static LevelSystem instance;
     PauseMenu pauseMenu;
 
+    public bool planning;
     public int processorCount;
     public int processorsDestroyed;
 
+    public GameObject planningInterface;
     public GameObject nextLevelScreen;
 
 
@@ -20,6 +22,8 @@ public class LevelSystem : MonoBehaviour
         instance = this;
         pauseMenu = GameObject.FindObjectOfType<PauseMenu>();
         pauseMenu.pause = false;
+        planning = true;
+        planningInterface.SetActive(true);
     }
 
     // Update is called once per frame
@@ -28,6 +32,11 @@ public class LevelSystem : MonoBehaviour
         if(processorsDestroyed == processorCount )
         {
             LevelComplete();
+        }
+        if(Input.GetKeyDown(KeyCode.Space) && planning)
+        {
+            planning = false;
+            planningInterface.SetActive(false);
         }
     }
 

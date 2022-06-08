@@ -110,7 +110,7 @@ MonoBehaviour:
   _projectileSpawnLocation: {fileID: 1908366469376690989}
   _shootParticle: {fileID: 6048840435147889705, guid: f99ab9e642c78474a9b341274aa5d5b9,
     type: 3}
-  _shootSound: {fileID: 8300000, guid: 566aef437aea8624c84bbcade7403b9e, type: 3}
+  _shootSound: {fileID: 8300000, guid: 0a424c56f05547648bd58bf3f8dbaaaf, type: 3}
   muzzleFlash: {fileID: 3034371874794093543, guid: dd1d65c5a3d7def4bbd4d93a8acfb8a2,
     type: 3}
   bulletsPerShot: 10

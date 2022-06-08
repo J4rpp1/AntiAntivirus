@@ -8,6 +8,7 @@ public class Pickable : MonoBehaviour
     public bool isShotgun;
     public bool isAr;
     public int currentAmmo;
+    public int shield;
 
     void Start()
     {
