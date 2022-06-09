@@ -54,16 +54,17 @@ public class Enemy : MonoBehaviour, IDamageable
     public bool isArEnemy;
 
     public Animator animator;
-
+    public Vector3 previous;
+    public float velocity;
     [SerializeField] WeaponBase pistol = null;
     [SerializeField] WeaponBase shotgun = null;
     [SerializeField] WeaponBase assaultRifle = null;
     public bool notShooting;
     public float fireRate;
 
-    Vector3 worldDeltaPosition;
+    /*Vector3 worldDeltaPosition;
     Vector3 groundDeltaPosition;
-    Vector2 velocity = Vector2.zero;
+    Vector2 velocity = Vector2.zero;*/
 
     // weapon socket helps us position our weapon and graphics
     [SerializeField] Transform _weaponSocket = null;
@@ -80,7 +81,7 @@ public class Enemy : MonoBehaviour, IDamageable
         currentHp = maxHp;
         agent = GetComponent<NavMeshAgent>();
 
-        agent.updatePosition = false;
+        //agent.updatePosition = false;
         // Disabling auto-braking allows for continuous movement
         // between points (ie, the agent doesn't slow down as it
         // approaches a destination point).
@@ -92,9 +93,8 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         pauseMenu = GameObject.FindObjectOfType<PauseMenu>();
         notShooting = true;
-       
 
-
+        
         if (isPistolEnemy)
         {
             EquipWeapon(pistol);
@@ -155,15 +155,20 @@ public class Enemy : MonoBehaviour, IDamageable
     // Update is called once per frame
     void Update()
     {
+        velocity = ((transform.position - previous).magnitude) / Time.deltaTime;
+        previous = transform.position;
 
-        worldDeltaPosition = agent.nextPosition - transform.position;
-        groundDeltaPosition.x = Vector3.Dot(transform.right, worldDeltaPosition);
-        groundDeltaPosition.y = Vector3.Dot(transform.forward, worldDeltaPosition);
-        velocity = (Time.deltaTime > 1e-5f) ? groundDeltaPosition / Time.deltaTime : velocity = Vector2.zero;
-        bool shouldMove = velocity.magnitude > 0.025f && agent.remainingDistance > agent.radius;
-        animator.SetBool("Move", shouldMove);
-        animator.SetFloat("Vertical", velocity.x);
-        animator.SetFloat("Horizontal", velocity.y);
+        Debug.Log(velocity);
+        /* worldDeltaPosition = agent.nextPosition - transform.position;
+         groundDeltaPosition.x = Vector3.Dot(transform.right, worldDeltaPosition);
+         groundDeltaPosition.y = Vector3.Dot(transform.forward, worldDeltaPosition);
+         velocity = (Time.deltaTime > 1e-5f) ? groundDeltaPosition / Time.deltaTime : velocity = Vector2.zero;
+         bool shouldMove = velocity.magnitude > 0.025f && agent.remainingDistance > agent.radius;*/
+        
+         animator.SetBool("Move", true);
+         animator.SetFloat("Vertical", previous.x);
+         animator.SetFloat("Horizontal", previous.y);
+
 
         if (canSeePlayer && notShooting && !pauseMenu.pause)
         {
