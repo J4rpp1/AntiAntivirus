@@ -62,6 +62,7 @@ public class Enemy : MonoBehaviour, IDamageable
     [SerializeField] WeaponBase assaultRifle = null;
     public bool notShooting;
     public float fireRate;
+    public SpriteRenderer _renderer;
 
     /*Vector3 worldDeltaPosition;
     Vector3 groundDeltaPosition;
@@ -75,6 +76,7 @@ public class Enemy : MonoBehaviour, IDamageable
     // Start is called before the first frame update
     void Start()
     {
+        
         weaponSystem = GameObject.FindObjectOfType<WeaponSystem>();
         
         playerRef = GameObject.FindGameObjectWithTag("Player");
@@ -164,14 +166,19 @@ public class Enemy : MonoBehaviour, IDamageable
 		if(velocityVector.x > 0.01)
 		{
 			Debug.Log("Walking right, with speed "+velocityVector.magnitude);
-		}
+            animator.SetBool("Move", true);
+            _renderer.flipX = false;
+        }
 		else if(velocityVector.x < 0.01)
 		{
 			Debug.Log("Walking left, with speed "+velocityVector.magnitude);
-		}
+            animator.SetBool("Move", true);
+            _renderer.flipX = true;
+        }
 		else
 		{
-			Debug.Log("Standing still");
+            animator.SetBool("Move", false);
+            Debug.Log("Standing still");
 		}
         //Debug.DrawRay(transform.position, velocityVector, Color.magenta, 0.05f);
 
@@ -181,9 +188,9 @@ public class Enemy : MonoBehaviour, IDamageable
          velocity = (Time.deltaTime > 1e-5f) ? groundDeltaPosition / Time.deltaTime : velocity = Vector2.zero;
          bool shouldMove = velocity.magnitude > 0.025f && agent.remainingDistance > agent.radius;*/
         
-         animator.SetBool("Move", true);
+         /*animator.SetBool("Move", true);
          animator.SetFloat("Vertical", previousPosition.x);
-         animator.SetFloat("Horizontal", previousPosition.y);
+         animator.SetFloat("Horizontal", previousPosition.y);*/
 
 
         if (canSeePlayer && notShooting && !pauseMenu.pause)
