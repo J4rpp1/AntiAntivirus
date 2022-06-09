@@ -4562,6 +4562,10 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 2089754272, guid: 93be59e5917ac4645ae34feb536dfbec, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 1044044314}
     - target: {fileID: 721496871542147768, guid: 93be59e5917ac4645ae34feb536dfbec,
         type: 3}
       propertyPath: m_RootOrder
@@ -6155,6 +6159,11 @@ PrefabInstance:
       propertyPath: crosshair
       value: 
       objectReference: {fileID: 2089754273}
+    - target: {fileID: 604915491615335392, guid: 98a8db7af51fd624e8ff6a6ca3c18629,
+        type: 3}
+      propertyPath: m_VolumeTrigger
+      value: 
+      objectReference: {fileID: 165202648}
     - target: {fileID: 604915491615335392, guid: 98a8db7af51fd624e8ff6a6ca3c18629,
         type: 3}
       propertyPath: m_VolumeLayerMask.m_Bits

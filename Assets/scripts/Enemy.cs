@@ -53,13 +53,17 @@ public class Enemy : MonoBehaviour, IDamageable
     public bool isShotGunEnemy;
     public bool isArEnemy;
 
-    Enemy enemy;
+    public Animator animator;
 
     [SerializeField] WeaponBase pistol = null;
     [SerializeField] WeaponBase shotgun = null;
     [SerializeField] WeaponBase assaultRifle = null;
     public bool notShooting;
     public float fireRate;
+
+    Vector3 worldDeltaPosition;
+    Vector3 groundDeltaPosition;
+    Vector2 velocity = Vector2.zero;
 
     // weapon socket helps us position our weapon and graphics
     [SerializeField] Transform _weaponSocket = null;
@@ -76,6 +80,7 @@ public class Enemy : MonoBehaviour, IDamageable
         currentHp = maxHp;
         agent = GetComponent<NavMeshAgent>();
 
+        agent.updatePosition = false;
         // Disabling auto-braking allows for continuous movement
         // between points (ie, the agent doesn't slow down as it
         // approaches a destination point).
@@ -143,10 +148,23 @@ public class Enemy : MonoBehaviour, IDamageable
         // cycling to the start if necessary.
         destPoint = (destPoint + 1) % points.Length;
     }
-    
+    void OnAnimatorMove()
+    {
+        transform.position = agent.nextPosition;
+    }
     // Update is called once per frame
     void Update()
     {
+
+        worldDeltaPosition = agent.nextPosition - transform.position;
+        groundDeltaPosition.x = Vector3.Dot(transform.right, worldDeltaPosition);
+        groundDeltaPosition.y = Vector3.Dot(transform.forward, worldDeltaPosition);
+        velocity = (Time.deltaTime > 1e-5f) ? groundDeltaPosition / Time.deltaTime : velocity = Vector2.zero;
+        bool shouldMove = velocity.magnitude > 0.025f && agent.remainingDistance > agent.radius;
+        animator.SetBool("Move", shouldMove);
+        animator.SetFloat("Vertical", velocity.x);
+        animator.SetFloat("Horizontal", velocity.y);
+
         if (canSeePlayer && notShooting && !pauseMenu.pause)
         {
             Debug.Log("saa ampua");

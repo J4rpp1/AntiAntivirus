@@ -296,12 +296,13 @@ MonoBehaviour:
   isPistolEnemy: 0
   isShotGunEnemy: 0
   isArEnemy: 0
+  animator: {fileID: 9200661801925159783}
   pistol: {fileID: 7246210774740202199, guid: c4ad5b83612d0914ea61292f66349998, type: 3}
   shotgun: {fileID: 1590956039, guid: 3e0d4267cd30ec543b5478ffb91f5641, type: 3}
   assaultRifle: {fileID: 6875003803894707106, guid: 1cfd9e0ef6cf65147935f0e35884e7db,
     type: 3}
   notShooting: 0
-  fireRate: 0.2
+  fireRate: 0.4
   _weaponSocket: {fileID: 5280584188459176527}
 --- !u!195 &5280584187550984307
 NavMeshAgent:

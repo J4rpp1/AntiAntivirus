@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerHp : MonoBehaviour, IDamageable
 {
@@ -24,6 +25,7 @@ public class PlayerHp : MonoBehaviour, IDamageable
             canDie = true;
         if(currentHp == 0)
         {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             Destroy(gameObject);
         }
     }
