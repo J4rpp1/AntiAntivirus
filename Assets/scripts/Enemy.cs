@@ -54,8 +54,9 @@ public class Enemy : MonoBehaviour, IDamageable
     public bool isArEnemy;
 
     public Animator animator;
-    public Vector3 previous;
     public float velocity;
+    private Vector3 previousPosition;
+    private Vector3 velocityVector;
     [SerializeField] WeaponBase pistol = null;
     [SerializeField] WeaponBase shotgun = null;
     [SerializeField] WeaponBase assaultRifle = null;
@@ -155,10 +156,25 @@ public class Enemy : MonoBehaviour, IDamageable
     // Update is called once per frame
     void Update()
     {
-        velocity = ((transform.position - previous).magnitude) / Time.deltaTime;
-        previous = transform.position;
+		velocityVector = (transform.position - previousPosition) /Time.deltaTime;
 
-        Debug.Log(velocity);
+        //velocity = ((transform.position - previousPosition).magnitude) / Time.deltaTime;
+        previousPosition = transform.position;
+
+		if(velocityVector.x > 0.01)
+		{
+			Debug.Log("Walking right, with speed "+velocityVector.magnitude);
+		}
+		else if(velocityVector.x < 0.01)
+		{
+			Debug.Log("Walking left, with speed "+velocityVector.magnitude);
+		}
+		else
+		{
+			Debug.Log("Standing still");
+		}
+        //Debug.DrawRay(transform.position, velocityVector, Color.magenta, 0.05f);
+
         /* worldDeltaPosition = agent.nextPosition - transform.position;
          groundDeltaPosition.x = Vector3.Dot(transform.right, worldDeltaPosition);
          groundDeltaPosition.y = Vector3.Dot(transform.forward, worldDeltaPosition);
@@ -166,8 +182,8 @@ public class Enemy : MonoBehaviour, IDamageable
          bool shouldMove = velocity.magnitude > 0.025f && agent.remainingDistance > agent.radius;*/
         
          animator.SetBool("Move", true);
-         animator.SetFloat("Vertical", previous.x);
-         animator.SetFloat("Horizontal", previous.y);
+         animator.SetFloat("Vertical", previousPosition.x);
+         animator.SetFloat("Horizontal", previousPosition.y);
 
 
         if (canSeePlayer && notShooting && !pauseMenu.pause)
@@ -176,12 +192,12 @@ public class Enemy : MonoBehaviour, IDamageable
             StartCoroutine(Shoot());
 
         }
-        //näkee pelaajan
+        //nï¿½kee pelaajan
         if(canSeePlayer && !pauseMenu.pause)
         {
             timer = 0;
             timer3 = 0;
-            Debug.Log("näkee pelaajan");
+            Debug.Log("nï¿½kee pelaajan");
             alertLevel = 2;
             heardSoundPosition = weaponSystem.transform;
             //agent.destination = weaponSystem.transform.position;
@@ -221,7 +237,7 @@ public class Enemy : MonoBehaviour, IDamageable
         if (canSeePlayer && !pauseMenu.pause)
         {
             canStartIdle = false;
-            //Debug.Log("pysäytä");
+            //Debug.Log("pysï¿½ytï¿½");
             
             
         }
@@ -288,7 +304,7 @@ public class Enemy : MonoBehaviour, IDamageable
     public void SoundHeard()
     {
         alertStarted = false;
-        Debug.Log("kuulee äänen");
+        Debug.Log("kuulee ï¿½ï¿½nen");
         heardSoundPosition = weaponSystem.transform;
         alertLevel = 2;
     }
