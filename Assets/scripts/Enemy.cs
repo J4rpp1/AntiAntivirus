@@ -165,21 +165,34 @@ public class Enemy : MonoBehaviour, IDamageable
 
 		if(velocityVector.x > 0.01)
 		{
-			Debug.Log("Walking right, with speed "+velocityVector.magnitude);
+			//Debug.Log("Walking right, with speed "+velocityVector.magnitude);
             animator.SetBool("Move", true);
             _renderer.flipX = false;
         }
-		else if(velocityVector.x < 0.01)
+		else if(velocityVector.x < -0.01)
 		{
-			Debug.Log("Walking left, with speed "+velocityVector.magnitude);
+			//Debug.Log("Walking left, with speed "+velocityVector.x);
             animator.SetBool("Move", true);
             _renderer.flipX = true;
         }
 		else
 		{
             animator.SetBool("Move", false);
-            Debug.Log("Standing still");
+           // Debug.Log("Standing still");
 		}
+
+        if(velocityVector.z > 0.01)
+        {
+           // Debug.Log("Walking up, with speed " + velocityVector.magnitude);
+            animator.SetBool("IsFacingUp", true);
+        }
+        else if(velocityVector.z < -0.01)
+        {
+           // Debug.Log("Walking down, with speed " + velocityVector.magnitude);
+            animator.SetBool("IsFacingUp", false);
+
+        }
+        
         //Debug.DrawRay(transform.position, velocityVector, Color.magenta, 0.05f);
 
         /* worldDeltaPosition = agent.nextPosition - transform.position;
@@ -187,10 +200,10 @@ public class Enemy : MonoBehaviour, IDamageable
          groundDeltaPosition.y = Vector3.Dot(transform.forward, worldDeltaPosition);
          velocity = (Time.deltaTime > 1e-5f) ? groundDeltaPosition / Time.deltaTime : velocity = Vector2.zero;
          bool shouldMove = velocity.magnitude > 0.025f && agent.remainingDistance > agent.radius;*/
-        
-         /*animator.SetBool("Move", true);
-         animator.SetFloat("Vertical", previousPosition.x);
-         animator.SetFloat("Horizontal", previousPosition.y);*/
+
+        /*animator.SetBool("Move", true);
+        animator.SetFloat("Vertical", previousPosition.x);
+        animator.SetFloat("Horizontal", previousPosition.y);*/
 
 
         if (canSeePlayer && notShooting && !pauseMenu.pause)

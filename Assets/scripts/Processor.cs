@@ -6,6 +6,8 @@ using UnityEngine;
 public class Processor : MonoBehaviour, IDamageable
 {
     LevelSystem levelSystem;
+    public GameObject processorSprite;
+    public GameObject damagedProcessorSprite;
 
     void Start()
     {
@@ -21,7 +23,9 @@ public class Processor : MonoBehaviour, IDamageable
     public void Damage()
     {
         levelSystem.processorsDestroyed = levelSystem.processorsDestroyed + 1;
-        Destroy(gameObject);
+        processorSprite.SetActive(false);
+        damagedProcessorSprite.SetActive(true);
+
     }
 
    
