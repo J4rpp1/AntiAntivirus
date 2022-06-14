@@ -5,12 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class PlayerHp : MonoBehaviour, IDamageable
 {
+    public static PlayerHp instance;
     WeaponSystem weaponsystem;
     public int currentHp;
     public int maxHp;
     public bool canDie;
+    public AudioClip deathSound;
+    public AudioClip shieldDownSound;
+    public bool isDead;
     void Start()
     {
+        instance = this;
         canDie = true;
         weaponsystem = GameObject.FindObjectOfType<WeaponSystem>();
         currentHp = maxHp;
@@ -25,8 +30,8 @@ public class PlayerHp : MonoBehaviour, IDamageable
             canDie = true;
         if(currentHp == 0)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            Destroy(gameObject);
+            StartCoroutine(Die());
+            
         }
     }
     public void Damage()
@@ -36,10 +41,19 @@ public class PlayerHp : MonoBehaviour, IDamageable
         if(weaponsystem.shield == 1 && !canDie)
         StartCoroutine(ShieldDown());
     }
+    IEnumerator Die()
+    {
+        isDead = true;
+        AudioSource.PlayClipAtPoint(deathSound, transform.position);
+        yield return new WaitForSeconds(1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
     IEnumerator ShieldDown()
     {
+        AudioSource.PlayClipAtPoint(shieldDownSound, transform.position);
         canDie = false;
-        yield return new WaitForSeconds(0.2f);
+
+        yield return new WaitForSeconds(0.4f);
         weaponsystem.shield = 0;
         
         canDie = true;

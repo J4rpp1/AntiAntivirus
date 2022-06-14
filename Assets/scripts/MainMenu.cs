@@ -8,6 +8,7 @@ public class MainMenu : MonoBehaviour
 {
     public GameObject mainMenuUi;
     public GameObject levelSelectUi;
+    public GameObject infoMenuUi;
 
     void Start()
     {
@@ -25,6 +26,18 @@ public class MainMenu : MonoBehaviour
         levelSelectUi.SetActive(false);
         mainMenuUi.SetActive(true);
         
+    }
+
+    public void OpenInfo()
+    {
+        mainMenuUi.SetActive(false);
+        infoMenuUi.SetActive(true);
+    }
+
+    public void CloseInfo()
+    {
+        infoMenuUi.SetActive(false);
+        mainMenuUi.SetActive(true);
     }
     public void QuitGame()
     {

@@ -6,6 +6,7 @@ public class Movement : MonoBehaviour
 {
     LevelSystem levelSystem;
     WeaponSystem weaponSystem;
+    PlayerHp playerHp;
     [SerializeField] private LayerMask groundMask;
     private Camera mainCamera;
 
@@ -22,6 +23,7 @@ public class Movement : MonoBehaviour
    
 	void Start()
 	{
+        playerHp= GameObject.FindObjectOfType<PlayerHp>();
         levelSystem = GameObject.FindObjectOfType<LevelSystem>();
         weaponSystem = GameObject.FindObjectOfType<WeaponSystem>();
 		rb = GetComponent<Rigidbody>();
@@ -40,7 +42,7 @@ public class Movement : MonoBehaviour
         if (!weaponSystem.knifeEquipped)
                     walkSpeed = 6f;
 		
-        if(!levelSystem.planning)
+        if(!levelSystem.planning && !playerHp.isDead)
         {
 
 		moveDirection = new Vector3(

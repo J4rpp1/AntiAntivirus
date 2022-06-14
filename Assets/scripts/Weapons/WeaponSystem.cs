@@ -7,6 +7,7 @@ using TMPro;
 public class WeaponSystem : MonoBehaviour
 {
     public static WeaponSystem instance;
+    PlayerHp playerHp;
     PauseMenu pauseMenu;
     LevelSystem levelSystem;
     public AudioClip noAmmo;
@@ -57,6 +58,7 @@ public class WeaponSystem : MonoBehaviour
     
     private void Awake()
     {
+        playerHp = GameObject.FindObjectOfType<PlayerHp>();
         pauseMenu = GameObject.FindObjectOfType<PauseMenu>();
         levelSystem = GameObject.FindObjectOfType<LevelSystem>();
         knifeEquipped = true;
@@ -96,13 +98,13 @@ public class WeaponSystem : MonoBehaviour
             ammoText.text = "";
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && currentWepAmmocount > 0 && !pauseMenu.pause && !levelSystem.planning)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && currentWepAmmocount > 0 && !pauseMenu.pause && !levelSystem.planning && !playerHp.isDead)
         {
             ShootWeapon();
             if(!knifeEquipped)
             Sound(new Vector3(0, 0, 0), 7);
         }
-        else if(currentWepAmmocount == 0 && (Input.GetKeyDown(KeyCode.Mouse0)) && !pauseMenu.pause && !levelSystem.planning)
+        else if(currentWepAmmocount == 0 && (Input.GetKeyDown(KeyCode.Mouse0)) && !pauseMenu.pause && !levelSystem.planning && !playerHp.isDead)
             AudioSource.PlayClipAtPoint(noAmmo,transform.position);
 
         if (pistolEquipped)
@@ -111,7 +113,7 @@ public class WeaponSystem : MonoBehaviour
             ammoText.text = currentWepAmmocount.ToString() + "/6";
         if(arEquipped)
             ammoText.text = currentWepAmmocount.ToString() + "/30";
-        if (Input.GetKeyDown(KeyCode.Mouse1)) 
+        if (Input.GetKeyDown(KeyCode.Mouse1) && !playerHp.isDead) 
         TryPickupWeapon();
 
         if (shield == 0)
