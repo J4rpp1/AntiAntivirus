@@ -244,6 +244,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   processorSprite: {fileID: 4251858138607589339}
   damagedProcessorSprite: {fileID: 9140102076720605171}
+  destroySound: {fileID: 8300000, guid: da448fdb5a587164ca3a066f0ee0a6f9, type: 3}
 --- !u!1 &9140102076720605171
 GameObject:
   m_ObjectHideFlags: 0
@@ -318,7 +319,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d701c1498d627e24c8feb00335a2c2de, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a55c1d54550349048b36baa80365bffb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
