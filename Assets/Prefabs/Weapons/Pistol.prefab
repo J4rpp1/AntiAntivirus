@@ -54,7 +54,7 @@ MonoBehaviour:
   _projectileSpawnLocation: {fileID: 7975478985480017524}
   _shootParticle: {fileID: 6048840435147889705, guid: f99ab9e642c78474a9b341274aa5d5b9,
     type: 3}
-  _shootSound: {fileID: 8300000, guid: 985c8899efb772948874ffb2c42c39de, type: 3}
+  _shootSound: {fileID: 8300000, guid: 424ddf1813665374f87b7f165806a175, type: 3}
   muzzleFlash: {fileID: 7396194684696616235}
   ammoCount: 10
 --- !u!65 &178149987

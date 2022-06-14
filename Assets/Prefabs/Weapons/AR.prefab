@@ -167,7 +167,7 @@ MonoBehaviour:
   _projectileSpawnLocation: {fileID: 2424438923346150754}
   _shootParticle: {fileID: 6048840435147889705, guid: f99ab9e642c78474a9b341274aa5d5b9,
     type: 3}
-  _shootSound: {fileID: 8300000, guid: 008ffa1298100f4448e13e7d2b88bb55, type: 3}
+  _shootSound: {fileID: 8300000, guid: 40cab87c5d1e2f94eb978b6f26b6d1b3, type: 3}
   fireRate: 0.12
   muzzleFlash: {fileID: 4889256087835927114}
   gizmoPosition: {x: 0, y: 0, z: 0}
