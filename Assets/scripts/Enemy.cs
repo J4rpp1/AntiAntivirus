@@ -165,33 +165,35 @@ public class Enemy : MonoBehaviour, IDamageable
 
 		if(velocityVector.x > 0.01)
 		{
-			//Debug.Log("Walking right, with speed "+velocityVector.magnitude);
-            animator.SetBool("Move", true);
+			//Walking right
             _renderer.flipX = false;
         }
 		else if(velocityVector.x < -0.01)
 		{
-			//Debug.Log("Walking left, with speed "+velocityVector.x);
-            animator.SetBool("Move", true);
+			//Walking left
             _renderer.flipX = true;
         }
-		else
-		{
-            animator.SetBool("Move", false);
-           // Debug.Log("Standing still");
-		}
 
         if(velocityVector.z > 0.01)
         {
-           // Debug.Log("Walking up, with speed " + velocityVector.magnitude);
+           	// Walking upward
             animator.SetBool("IsFacingUp", true);
         }
         else if(velocityVector.z < -0.01)
         {
-           // Debug.Log("Walking down, with speed " + velocityVector.magnitude);
+           	// Walking downward
             animator.SetBool("IsFacingUp", false);
 
         }
+
+		if(velocityVector.magnitude > 0.01) //If got speed, set Move
+		{
+            animator.SetBool("Move", true);
+		}
+		else
+		{
+            animator.SetBool("Move", false);
+		}
         
         //Debug.DrawRay(transform.position, velocityVector, Color.magenta, 0.05f);
 
