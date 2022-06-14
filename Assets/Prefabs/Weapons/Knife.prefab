@@ -48,7 +48,7 @@ MonoBehaviour:
   _projectile: {fileID: 0}
   _projectileSpawnLocation: {fileID: 0}
   _shootParticle: {fileID: 0}
-  _shootSound: {fileID: 0}
+  _shootSound: {fileID: 8300000, guid: 4ecaa0f9aefca1445a497f2ad80520b0, type: 3}
   radius: 1
   enemyLayer:
     serializedVersion: 2

@@ -94,10 +94,9 @@ MonoBehaviour:
   _projectileSpawnLocation: {fileID: 5544378737395001298}
   _shootParticle: {fileID: 6048840435147889705, guid: f99ab9e642c78474a9b341274aa5d5b9,
     type: 3}
-  _shootSound: {fileID: 8300000, guid: 985c8899efb772948874ffb2c42c39de, type: 3}
+  _shootSound: {fileID: 8300000, guid: 424ddf1813665374f87b7f165806a175, type: 3}
   muzzleFlash: {fileID: 3034371874794093543, guid: dd1d65c5a3d7def4bbd4d93a8acfb8a2,
     type: 3}
-  ammoCount: 10
 --- !u!4 &5544378737395001298 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4028599440152847620, guid: ec26ec96e45694a478bb0d12c1325c04,
