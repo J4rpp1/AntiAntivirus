@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     public static PauseMenu instance;
-    
+    MusicPlayer musicPlayer;
     [SerializeField] AudioClip clickSound;
     public GameObject pauseMenuUi;
     public bool pause;
@@ -17,6 +17,7 @@ public class PauseMenu : MonoBehaviour
     }
     private void Awake()
     {
+        musicPlayer = GameObject.FindObjectOfType<MusicPlayer>();
         instance = this;
     }
 
@@ -46,6 +47,8 @@ public class PauseMenu : MonoBehaviour
 
     public void Quit()
     {
+        musicPlayer.levelMusic.Stop();
+        musicPlayer.music.Play();
         //  SFX.instance.PlayClip(clickSound, 1f);
         Time.timeScale = 1;
         SceneManager.LoadScene(0);
