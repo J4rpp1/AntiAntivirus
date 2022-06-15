@@ -53,6 +53,8 @@ public class Enemy : MonoBehaviour, IDamageable
     public bool isShotGunEnemy;
     public bool isArEnemy;
 
+    bool isDead;
+
     public Animator animator;
     public float velocity;
     private Vector3 previousPosition;
@@ -140,6 +142,9 @@ public class Enemy : MonoBehaviour, IDamageable
     }
     void GotoNextPoint()
     {
+        if(!isDead)
+        {
+
         // Returns if no points have been set up
         if (points.Length == 0)
             return;
@@ -150,6 +155,7 @@ public class Enemy : MonoBehaviour, IDamageable
         // Choose the next point in the array as the destination,
         // cycling to the start if necessary.
         destPoint = (destPoint + 1) % points.Length;
+        }
     }
     void OnAnimatorMove()
     {
@@ -208,14 +214,14 @@ public class Enemy : MonoBehaviour, IDamageable
         animator.SetFloat("Horizontal", previousPosition.y);*/
 
 
-        if (canSeePlayer && notShooting && !pauseMenu.pause)
+        if (canSeePlayer && notShooting && !pauseMenu.pause && !isDead)
         {
             Debug.Log("saa ampua");
             StartCoroutine(Shoot());
 
         }
         //n�kee pelaajan
-        if(canSeePlayer && !pauseMenu.pause)
+        if(canSeePlayer && !pauseMenu.pause && !isDead)
         {
             timer = 0;
             timer3 = 0;
@@ -231,16 +237,16 @@ public class Enemy : MonoBehaviour, IDamageable
             
         }
        
-        if (!canSeePlayer && alertLevel == 1 && canStartIdle)
+        if (!canSeePlayer && alertLevel == 1 && canStartIdle && !isDead)
         {
-            Debug.Log("ajastimet");
+           // Debug.Log("ajastimet");
             timer += 1 * Time.deltaTime;
             
 
         }
         if (timer > 2)
         {
-            Debug.Log("timer valmis");
+           // Debug.Log("timer valmis");
            
             alertStarted = false;
             agent.isStopped = true;
@@ -248,7 +254,7 @@ public class Enemy : MonoBehaviour, IDamageable
         }
         if(timer > 4)
         {
-            Debug.Log("timer2 valmis");
+           // Debug.Log("timer2 valmis");
                 alertLevel = 0;
             agent.isStopped = false;
             timer = 0;
@@ -256,7 +262,7 @@ public class Enemy : MonoBehaviour, IDamageable
         }
       
         //StartCoroutine(LookAround());
-        if (canSeePlayer && !pauseMenu.pause)
+        if (canSeePlayer && !pauseMenu.pause && !isDead)
         {
             canStartIdle = false;
             //Debug.Log("pys�yt�");
@@ -264,7 +270,7 @@ public class Enemy : MonoBehaviour, IDamageable
             
         }
 
-        if (currentHp == 0)
+        if (currentHp == 0 && !isDead)
         {
             if (isPistolEnemy)
                 Instantiate(pistolDrop, transform.position, transform.rotation);
@@ -272,17 +278,20 @@ public class Enemy : MonoBehaviour, IDamageable
                 Instantiate(shotgunDrop, transform.position, transform.rotation);
             if (isArEnemy)
                 Instantiate(ArDrop, transform.position, transform.rotation);
-            Destroy(gameObject);
+            
+            if(!isDead)
+            StartCoroutine(Death());
+            //Destroy(gameObject);
         }
-        if (!agent.pathPending && agent.remainingDistance < 0.5f && patrolEnemy && alertLevel == 0 && !pauseMenu.pause)
+        if (!agent.pathPending && agent.remainingDistance < 0.5f && patrolEnemy && alertLevel == 0 && !pauseMenu.pause && !isDead)
             GotoNextPoint();
 
-        if (alertLevel == 1 && !alertStarted && !canSeePlayer)
+       /* if (alertLevel == 1 && !alertStarted && !canSeePlayer)
         {
 
-        }
+        }*/
            // StartCoroutine(AlertMode1());
-       if(alertLevel == 2 && !alertStarted)
+       if(alertLevel == 2 && !alertStarted )
         {
             Alert1();
         }
@@ -388,5 +397,15 @@ public class Enemy : MonoBehaviour, IDamageable
         }
         else if (canSeePlayer)
             canSeePlayer = false;
+    }
+    
+    IEnumerator Death()
+    {
+        gameObject.GetComponent<NavMeshAgent>().enabled = false;
+        agent.isStopped = true;
+        isDead = true;
+        animator.SetTrigger("Die");
+        yield return new WaitForSeconds(4);
+        Destroy(gameObject);
     }
 }
