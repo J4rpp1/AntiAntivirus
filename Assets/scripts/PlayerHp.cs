@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class PlayerHp : MonoBehaviour, IDamageable
 {
     public static PlayerHp instance;
+    MusicPlayer musicPlayer;
     WeaponSystem weaponsystem;
     public int currentHp;
     public int maxHp;
@@ -17,6 +18,7 @@ public class PlayerHp : MonoBehaviour, IDamageable
     {
         instance = this;
         canDie = true;
+        musicPlayer = GameObject.FindObjectOfType<MusicPlayer>();
         weaponsystem = GameObject.FindObjectOfType<WeaponSystem>();
         currentHp = maxHp;
     }
@@ -46,6 +48,8 @@ public class PlayerHp : MonoBehaviour, IDamageable
         isDead = true;
         AudioSource.PlayClipAtPoint(deathSound, transform.position);
         yield return new WaitForSeconds(1);
+        musicPlayer.levelMusic.Stop();
+        musicPlayer.music.Play();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     IEnumerator ShieldDown()

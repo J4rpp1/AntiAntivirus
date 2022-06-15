@@ -4,27 +4,31 @@ using UnityEngine;
 
 public class MusicPlayer : MonoBehaviour
 {
-    private static GameObject instance;
+    public static MusicPlayer instance;
     public AudioSource music;
     public AudioSource levelMusic;
 
     void Start()
 
     {
-        DontDestroyOnLoad(gameObject);
-        if (instance == null)
-            instance = gameObject;
-        else
+        if (instance != null)
             Destroy(gameObject);
+        else
+            instance = this;
+        DontDestroyOnLoad(gameObject);
         PlayMenuMusic();
     }
 
-    void PlayMenuMusic()
+    public void PlayMenuMusic()
     {
         music.Play();
 
     }
 
+    public void PlayLevelMusic()
+    {
+        levelMusic.Play();
+    }
     void Update()
     {
     }

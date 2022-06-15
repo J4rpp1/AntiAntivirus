@@ -7,7 +7,7 @@ public class LevelSystem : MonoBehaviour
 {
     public static LevelSystem instance;
     PauseMenu pauseMenu;
-
+    MusicPlayer musicPlayer;
     public bool planning;
     public int processorCount;
     public int processorsDestroyed;
@@ -20,6 +20,7 @@ public class LevelSystem : MonoBehaviour
     {
         
         instance = this;
+        musicPlayer = GameObject.FindObjectOfType<MusicPlayer>();
         pauseMenu = GameObject.FindObjectOfType<PauseMenu>();
         pauseMenu.pause = false;
         planning = true;
@@ -35,6 +36,8 @@ public class LevelSystem : MonoBehaviour
         }
         if(Input.GetKeyDown(KeyCode.Space) && planning)
         {
+            musicPlayer.music.Pause();
+            musicPlayer.levelMusic.Play(); 
             planning = false;
             planningInterface.SetActive(false);
         }
@@ -50,10 +53,14 @@ public class LevelSystem : MonoBehaviour
 
     public void NextLevelButton()
     {
+        musicPlayer.levelMusic.Stop();
+        musicPlayer.music.Play();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
     public void MainMenuButton()
     {
+        musicPlayer.levelMusic.Stop();
+        musicPlayer.music.Play();
         Time.timeScale = 1;
         SceneManager.LoadScene(0);
     }
