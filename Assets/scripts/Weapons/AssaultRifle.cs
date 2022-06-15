@@ -9,7 +9,7 @@ public class AssaultRifle : WeaponBase
     public GameObject muzzleFlash;
     public Vector3 gizmoPosition;
     public float radius = 5;
-
+    bool isShooting;
 
     private void Start()
     {
@@ -17,7 +17,7 @@ public class AssaultRifle : WeaponBase
     }
     public override void Shoot()
     {
-        // instantiating bullet
+        if(!isShooting)
         StartCoroutine(Shooting());
 
         //ääni
@@ -25,11 +25,12 @@ public class AssaultRifle : WeaponBase
 
     private void Update()
     {
-      
+        Debug.Log(isShooting);
     }
     
     IEnumerator Shooting()
     {
+        isShooting = true;
         weaponSystem.currentWepAmmocount = weaponSystem.currentWepAmmocount - 1;
         muzzleFlash.SetActive(true);
         Projectile newProjectile = Instantiate
@@ -45,12 +46,12 @@ public class AssaultRifle : WeaponBase
 
         yield return new WaitForSeconds(fireRate);
         muzzleFlash.SetActive(false);
+        isShooting = false;
         AudioSource.PlayClipAtPoint(ShootSound, ProjectileSpawnLocation.position);
         if (Input.GetKey(KeyCode.Mouse0) && weaponSystem.currentWepAmmocount > 0)
         {
             StartCoroutine(Shooting());
         }
-        
         
     }
   

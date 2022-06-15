@@ -68,6 +68,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 6e59d6987eacc1e4083b4566ed0cb546,
         type: 3}
+    - target: {fileID: 6177378563899635510, guid: 91c8514cc011d4e4aa180d527537cb16,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6177378563899635510, guid: 91c8514cc011d4e4aa180d527537cb16,
+        type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7569345169552333013, guid: 91c8514cc011d4e4aa180d527537cb16,
         type: 3}
       propertyPath: m_Name

@@ -6,7 +6,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour, IDamageable
 {
     PauseMenu pauseMenu;
-    
+    public AudioClip deathSound;
     [Header("Pickable weapons")]
     public GameObject pistolDrop;
     public GameObject shotgunDrop;
@@ -65,6 +65,7 @@ public class Enemy : MonoBehaviour, IDamageable
     public bool notShooting;
     public float fireRate;
     public SpriteRenderer _renderer;
+    Collider m_Collider;
 
     /*Vector3 worldDeltaPosition;
     Vector3 groundDeltaPosition;
@@ -78,7 +79,7 @@ public class Enemy : MonoBehaviour, IDamageable
     // Start is called before the first frame update
     void Start()
     {
-       
+        m_Collider = GetComponent<Collider>();
         weaponSystem = GameObject.FindObjectOfType<WeaponSystem>();
         
         playerRef = GameObject.FindGameObjectWithTag("Player");
@@ -401,6 +402,9 @@ public class Enemy : MonoBehaviour, IDamageable
     
     IEnumerator Death()
     {
+        AudioSource.PlayClipAtPoint(deathSound, transform.position);
+        Destroy(EquippedWeapon.gameObject);
+        m_Collider.enabled = false;
         gameObject.GetComponent<NavMeshAgent>().enabled = false;
         agent.isStopped = true;
         isDead = true;
