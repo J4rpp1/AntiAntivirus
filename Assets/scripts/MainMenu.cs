@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
+
 
 
 public class MainMenu : MonoBehaviour
@@ -10,11 +12,16 @@ public class MainMenu : MonoBehaviour
     public GameObject levelSelectUi;
     public GameObject infoMenuUi;
 
+    public AudioMixer musicMixer;
     void Start()
     {
-        
-    }
+        SetMusicLevel(0f);
 
+    }
+    public void SetMusicLevel(float sliderValue)
+    {
+        musicMixer.SetFloat("MusicVol", Mathf.Log10(sliderValue) * 20);
+    }
     public void OpenLevelSelect()
     {
         mainMenuUi.SetActive(false);
