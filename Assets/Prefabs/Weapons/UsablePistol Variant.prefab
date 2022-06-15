@@ -95,7 +95,7 @@ MonoBehaviour:
   _shootParticle: {fileID: 6048840435147889705, guid: f99ab9e642c78474a9b341274aa5d5b9,
     type: 3}
   _shootSound: {fileID: 8300000, guid: 424ddf1813665374f87b7f165806a175, type: 3}
-  muzzleFlash: {fileID: 3034371874794093543, guid: dd1d65c5a3d7def4bbd4d93a8acfb8a2,
+  muzzleFlash: {fileID: 2133628327324487516, guid: 4738ddbc91f389948baebab4c014af1d,
     type: 3}
 --- !u!4 &5544378737395001298 stripped
 Transform:

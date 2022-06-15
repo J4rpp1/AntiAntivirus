@@ -147,6 +147,7 @@ GameObject:
   - component: {fileID: 279755662}
   - component: {fileID: 279755665}
   - component: {fileID: 279755664}
+  - component: {fileID: 7509473558716783090}
   m_Layer: 3
   m_Name: AntiSprite
   m_TagString: Untagged
@@ -219,6 +220,26 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!95 &7509473558716783090
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 279755661}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 50e23f04198020e4da52460169d54737, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &301888276
 GameObject:
   m_ObjectHideFlags: 0
