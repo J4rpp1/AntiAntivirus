@@ -7,7 +7,8 @@ public class MusicPlayer : MonoBehaviour
     public static MusicPlayer instance;
     public AudioSource music;
     public AudioSource levelMusic;
-
+    public AudioSource buttonPress;
+    public AudioSource winSound;
     void Start()
 
     {

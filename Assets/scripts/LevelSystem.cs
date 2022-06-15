@@ -11,10 +11,11 @@ public class LevelSystem : MonoBehaviour
     public bool planning;
     public int processorCount;
     public int processorsDestroyed;
+   
 
     public GameObject planningInterface;
     public GameObject nextLevelScreen;
-
+    bool levelIsCompleted;
 
     void Start()
     {
@@ -30,7 +31,7 @@ public class LevelSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(processorsDestroyed == processorCount )
+        if (processorsDestroyed == processorCount && !levelIsCompleted )
         {
             LevelComplete();
         }
@@ -45,6 +46,8 @@ public class LevelSystem : MonoBehaviour
 
      void LevelComplete()
     {
+        levelIsCompleted = true;
+        musicPlayer.winSound.Play();
         Cursor.visible = true; 
         pauseMenu.pause = true;
         nextLevelScreen.SetActive(true);
@@ -53,12 +56,14 @@ public class LevelSystem : MonoBehaviour
 
     public void NextLevelButton()
     {
+        musicPlayer.buttonPress.Play();
         musicPlayer.levelMusic.Stop();
         musicPlayer.music.Play();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
     public void MainMenuButton()
     {
+        musicPlayer.buttonPress.Play();
         musicPlayer.levelMusic.Stop();
         musicPlayer.music.Play();
         Time.timeScale = 1;

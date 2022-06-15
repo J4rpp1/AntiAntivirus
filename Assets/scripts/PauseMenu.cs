@@ -38,7 +38,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume()
     {
-       // SFX.instance.PlayClip(clickSound, 1f);
+        musicPlayer.buttonPress.Play();
         pauseMenuUi.SetActive(false);
         pause = false;
         Cursor.visible = false;
@@ -47,9 +47,10 @@ public class PauseMenu : MonoBehaviour
 
     public void Quit()
     {
+        musicPlayer.buttonPress.Play();
         musicPlayer.levelMusic.Stop();
         musicPlayer.music.Play();
-        //  SFX.instance.PlayClip(clickSound, 1f);
+       
         Time.timeScale = 1;
         SceneManager.LoadScene(0);
 

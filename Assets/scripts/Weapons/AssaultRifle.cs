@@ -25,7 +25,7 @@ public class AssaultRifle : WeaponBase
 
     private void Update()
     {
-        Debug.Log(isShooting);
+       
     }
     
     IEnumerator Shooting()

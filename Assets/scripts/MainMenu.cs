@@ -11,7 +11,7 @@ public class MainMenu : MonoBehaviour
     public GameObject mainMenuUi;
     public GameObject levelSelectUi;
     public GameObject infoMenuUi;
-
+    public AudioSource buttonPress;
     public AudioMixer musicMixer;
     void Start()
     {
@@ -24,12 +24,14 @@ public class MainMenu : MonoBehaviour
     }
     public void OpenLevelSelect()
     {
+        buttonPress.Play();
         mainMenuUi.SetActive(false);
         levelSelectUi.SetActive(true);
     }
 
     public void CloseLevelSelect()
     {
+        buttonPress.Play();
         levelSelectUi.SetActive(false);
         mainMenuUi.SetActive(true);
         
@@ -37,38 +39,41 @@ public class MainMenu : MonoBehaviour
 
     public void OpenInfo()
     {
+        buttonPress.Play();
         mainMenuUi.SetActive(false);
         infoMenuUi.SetActive(true);
     }
 
     public void CloseInfo()
     {
+        buttonPress.Play();
         infoMenuUi.SetActive(false);
         mainMenuUi.SetActive(true);
     }
     public void QuitGame()
     {
+        buttonPress.Play();
         Application.Quit();
     }
     public void Level1()
     {
+        buttonPress.Play();
         SceneManager.LoadScene(1);
     }
     public void Level2()
     {
+        buttonPress.Play();
         SceneManager.LoadScene(2);
     }
     public void Level3()
     {
+        buttonPress.Play();
         SceneManager.LoadScene(3);
     }
     public void Level4()
     {
+        buttonPress.Play();
         SceneManager.LoadScene(4);
     }
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   
 }
