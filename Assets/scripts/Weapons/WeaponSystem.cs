@@ -105,7 +105,7 @@ public class WeaponSystem : MonoBehaviour
             Sound(new Vector3(0, 0, 0), 7);
         }
         else if(currentWepAmmocount == 0 && (Input.GetKeyDown(KeyCode.Mouse0)) && !pauseMenu.pause && !levelSystem.planning && !playerHp.isDead)
-            AudioSource.PlayClipAtPoint(noAmmo,transform.position);
+            SFX.instance.PlayClip(noAmmo, 1f);
 
         if (pistolEquipped)
             ammoText.text = currentWepAmmocount.ToString() + "/10";
