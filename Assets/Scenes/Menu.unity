@@ -2223,6 +2223,75 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1108848040}
   m_CullTransparentMesh: 1
+--- !u!1001 &1133232393
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1898847813571275572, guid: bed2a8a84d67ac0438521057e7f1d5d0,
+        type: 3}
+      propertyPath: m_Name
+      value: SfxPlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 8572658655279749991, guid: bed2a8a84d67ac0438521057e7f1d5d0,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8572658655279749991, guid: bed2a8a84d67ac0438521057e7f1d5d0,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8572658655279749991, guid: bed2a8a84d67ac0438521057e7f1d5d0,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8572658655279749991, guid: bed2a8a84d67ac0438521057e7f1d5d0,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8572658655279749991, guid: bed2a8a84d67ac0438521057e7f1d5d0,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8572658655279749991, guid: bed2a8a84d67ac0438521057e7f1d5d0,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8572658655279749991, guid: bed2a8a84d67ac0438521057e7f1d5d0,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8572658655279749991, guid: bed2a8a84d67ac0438521057e7f1d5d0,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8572658655279749991, guid: bed2a8a84d67ac0438521057e7f1d5d0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8572658655279749991, guid: bed2a8a84d67ac0438521057e7f1d5d0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8572658655279749991, guid: bed2a8a84d67ac0438521057e7f1d5d0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bed2a8a84d67ac0438521057e7f1d5d0, type: 3}
 --- !u!1 &1159238439
 GameObject:
   m_ObjectHideFlags: 0
