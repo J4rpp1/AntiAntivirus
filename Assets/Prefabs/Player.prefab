@@ -1477,6 +1477,7 @@ MonoBehaviour:
   deathSound: {fileID: 8300000, guid: 95610d969bf1e404584fd87a8c322666, type: 3}
   shieldDownSound: {fileID: 8300000, guid: 4e54f480240af8b4bb21a3686cdfa8ab, type: 3}
   isDead: 0
+  animator: {fileID: 8971605782402296629}
 --- !u!1 &5524036480958974094
 GameObject:
   m_ObjectHideFlags: 0

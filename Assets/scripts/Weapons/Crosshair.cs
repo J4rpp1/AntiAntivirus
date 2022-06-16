@@ -14,6 +14,7 @@ public class Crosshair : MonoBehaviour
 
     void Start()
     {
+        mainCamera = Camera.main;
         Cursor.visible = false;
         hideCrosshair = false;
     }

@@ -47,6 +47,7 @@ public class LevelSystem : MonoBehaviour
      void LevelComplete()
     {
         levelIsCompleted = true;
+        musicPlayer.levelMusic.Stop();
         musicPlayer.winSound.Play();
         Cursor.visible = true; 
         pauseMenu.pause = true;
@@ -64,7 +65,7 @@ public class LevelSystem : MonoBehaviour
     public void MainMenuButton()
     {
         musicPlayer.buttonPress.Play();
-        musicPlayer.levelMusic.Stop();
+       
         musicPlayer.music.Play();
         Time.timeScale = 1;
         SceneManager.LoadScene(0);

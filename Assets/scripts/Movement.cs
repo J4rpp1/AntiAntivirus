@@ -12,7 +12,7 @@ public class Movement : MonoBehaviour
 
     public float walkSpeed = 6f;
 	public Transform target;
-	
+    public Animator animator;
 
 	float maxSpeed = 10f;
 	float curSpeed;
@@ -20,8 +20,8 @@ public class Movement : MonoBehaviour
 	float sprintSpeed;
 	Rigidbody rb;
     Vector3 moveDirection;
-   
-	void Start()
+    public SpriteRenderer _renderer;
+    void Start()
 	{
         playerHp= GameObject.FindObjectOfType<PlayerHp>();
         levelSystem = GameObject.FindObjectOfType<LevelSystem>();
@@ -50,7 +50,29 @@ public class Movement : MonoBehaviour
 		 Input.GetAxisRaw("Vertical")).normalized * walkSpeed;
 
         rb.velocity = Vector3.MoveTowards(rb.velocity, moveDirection, walkSpeed / 8);
-		Aim();
+
+            animator.SetFloat("SpeedX", Mathf.Abs(moveDirection.x));
+            animator.SetFloat("SpeedZ", Mathf.Abs(moveDirection.z));
+            if (Mathf.Abs(moveDirection.x) > 0.1 || Mathf.Abs(moveDirection.z) > 0.1)
+                animator.SetBool("Moving", true);
+            else
+                animator.SetBool("Moving", false);
+            Aim();
+
+            if (moveDirection.x > 0.01)
+            {
+                //Walking right
+                _renderer.flipX = true;
+            }
+            if (moveDirection.x < -0.01)
+            {
+                //Walking left
+                _renderer.flipX = false;
+            }
+            if (moveDirection.z > 0.1)
+                animator.SetBool("Back", true);
+            else
+                animator.SetBool("Back", false);
         }
         /*Vector3 mousePosition = Input.mousePosition;
 		Vector3 targetPosition = Camera.main.ScreenToWorldPoint(mousePosition);

@@ -91,7 +91,8 @@ public class WeaponSystem : MonoBehaviour
             StartCoroutine(DropTimer());
         }*/
 
-
+        if(playerHp.isDead)
+            Destroy(EquippedWeapon.gameObject);
         if (knifeEquipped)
         {
             currentWepAmmocount = 1;
