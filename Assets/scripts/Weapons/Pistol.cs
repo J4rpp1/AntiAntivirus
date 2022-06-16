@@ -24,8 +24,8 @@ public class Pistol : WeaponBase
             (Projectile, ProjectileSpawnLocation.position,
             ProjectileSpawnLocation.rotation);
         
-        //ääni
-        AudioSource.PlayClipAtPoint(ShootSound, ProjectileSpawnLocation.position);
+        //ï¿½ï¿½ni
+        SFX.instance.PlayClip(ShootSound, 1f);
        
 
         // Particles

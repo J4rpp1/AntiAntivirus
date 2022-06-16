@@ -24,8 +24,8 @@ public class Knife : WeaponBase
             }
         }
 
-        //ääni
-        AudioSource.PlayClipAtPoint(ShootSound, transform.position);
+        //ï¿½ï¿½ni
+        SFX.instance.PlayClip(ShootSound, 1f);
 
 
         /*

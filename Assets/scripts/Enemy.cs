@@ -402,7 +402,7 @@ public class Enemy : MonoBehaviour, IDamageable
     
     IEnumerator Death()
     {
-        AudioSource.PlayClipAtPoint(deathSound, transform.position);
+        SFX.instance.PlayClip(deathSound, 1f);
         Destroy(EquippedWeapon.gameObject);
         m_Collider.enabled = false;
         gameObject.GetComponent<NavMeshAgent>().enabled = false;

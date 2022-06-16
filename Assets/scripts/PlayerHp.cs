@@ -46,7 +46,7 @@ public class PlayerHp : MonoBehaviour, IDamageable
     IEnumerator Die()
     {
         isDead = true;
-        AudioSource.PlayClipAtPoint(deathSound, transform.position);
+        SFX.instance.PlayClip(deathSound, 1f);
         yield return new WaitForSeconds(1);
         musicPlayer.levelMusic.Stop();
         musicPlayer.music.Play();
@@ -54,7 +54,7 @@ public class PlayerHp : MonoBehaviour, IDamageable
     }
     IEnumerator ShieldDown()
     {
-        AudioSource.PlayClipAtPoint(shieldDownSound, transform.position);
+        SFX.instance.PlayClip(shieldDownSound, 1f);
         canDie = false;
 
         yield return new WaitForSeconds(0.4f);

@@ -41,8 +41,8 @@ public class Shotgun : WeaponBase
             //Debug.Log("Ampuu");
         }
       
-        //ääni
-        AudioSource.PlayClipAtPoint(ShootSound, ProjectileSpawnLocation.position);
+        //ï¿½ï¿½ni
+        SFX.instance.PlayClip(ShootSound, 1f);
        
         
         // Particles

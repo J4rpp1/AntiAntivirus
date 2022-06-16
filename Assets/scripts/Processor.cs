@@ -26,7 +26,7 @@ public class Processor : MonoBehaviour, IDamageable
         if(!destroyed)
         {
             destroyed = true;
-            AudioSource.PlayClipAtPoint(destroySound, transform.position);
+            SFX.instance.PlayClip(destroySound, 1f);
             processorSprite.SetActive(false);
             damagedProcessorSprite.SetActive(true);
             levelSystem.processorsDestroyed = levelSystem.processorsDestroyed + 1;

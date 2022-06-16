@@ -20,7 +20,7 @@ public class AssaultRifle : WeaponBase
         if(!isShooting)
         StartCoroutine(Shooting());
 
-        //ääni
+        //ï¿½ï¿½ni
     }
 
     private void Update()
@@ -47,7 +47,7 @@ public class AssaultRifle : WeaponBase
         yield return new WaitForSeconds(fireRate);
         muzzleFlash.SetActive(false);
         isShooting = false;
-        AudioSource.PlayClipAtPoint(ShootSound, ProjectileSpawnLocation.position);
+        SFX.instance.PlayClip(ShootSound, 1f);
         if (Input.GetKey(KeyCode.Mouse0) && weaponSystem.currentWepAmmocount > 0)
         {
             StartCoroutine(Shooting());
