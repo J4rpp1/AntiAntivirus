@@ -879,6 +879,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 708193951433379738}
+  - component: {fileID: 7850310760659132045}
   m_Layer: 0
   m_Name: WeaponPlace
   m_TagString: Untagged
@@ -902,6 +903,17 @@ Transform:
   m_Father: {fileID: 5900403712513307409}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!210 &7850310760659132045
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1007933011138905835}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!1 &1871286240775481434
 GameObject:
   m_ObjectHideFlags: 0
@@ -1376,6 +1388,7 @@ MonoBehaviour:
   walkSpeed: 6
   target: {fileID: 0}
   animator: {fileID: 8971605782402296629}
+  weaponSorting: {fileID: 7850310760659132045}
   _renderer: {fileID: 1795954366704177985}
 --- !u!54 &1901513481
 Rigidbody:
@@ -1390,7 +1403,7 @@ Rigidbody:
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &6912211409407346267
@@ -1646,6 +1659,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7748145105374470962}
+  - component: {fileID: 4435255763739631871}
   m_Layer: 0
   m_Name: Shield
   m_TagString: Untagged
@@ -1661,7 +1675,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5994493829247123021}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.301}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1669,6 +1683,18 @@ Transform:
   m_Father: {fileID: 708193951433379738}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4435255763739631871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5994493829247123021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5577eacae5c7714ba13872267f76f9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6485300910769203990
 GameObject:
   m_ObjectHideFlags: 0
@@ -2121,6 +2147,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1358045519058802402}
   - component: {fileID: 8787998913469867862}
+  - component: {fileID: 6642162081724727793}
   m_Layer: 0
   m_Name: PickableSprite
   m_TagString: Untagged
@@ -2135,14 +2162,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9140892352352506433}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.293, y: 0, z: -0.18}
-  m_LocalScale: {x: 1.5999999, y: 1.5999999, z: 1.5999999}
+  m_LocalRotation: {x: 0.0000014603138, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.5999999, y: 1.6000001, z: 1.6000001}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7748145105374470962}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8787998913469867862
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2183,7 +2210,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 6bb5cf345f830064aa9ee5bfdf752d6e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2195,3 +2222,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6642162081724727793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9140892352352506433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d75c5425230e3784a89ef700b785155e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Camera: {fileID: 0}

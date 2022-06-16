@@ -70,9 +70,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 1766869135
+  m_SortingLayer: 1
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: d074aa72128516c4b83979ecf6c89503, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -229,14 +229,6 @@ CapsuleCollider:
   m_Height: 1.98
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!33 &5861587140290881336
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9013994234218628491}
-  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &4262208657738381478
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -279,6 +271,14 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &5861587140290881336
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9013994234218628491}
+  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!4 &9013994234218628503 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5826045897085414608, guid: 463172076f4a03d4a9ba43455780d23e,

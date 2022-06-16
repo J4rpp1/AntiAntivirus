@@ -138,6 +138,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3700129162330978593}
   - component: {fileID: 3065690292304726615}
+  - component: {fileID: 796239466384372618}
   m_Layer: 12
   m_Name: UsableWeapon
   m_TagString: EditorOnly
@@ -185,3 +186,15 @@ MonoBehaviour:
     type: 3}
   gizmoPosition: {x: 0, y: 0, z: 0}
   radius: 5
+--- !u!114 &796239466384372618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7569345169552333013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5577eacae5c7714ba13872267f76f9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

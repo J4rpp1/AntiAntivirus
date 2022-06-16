@@ -133,6 +133,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   crosshair: {fileID: 0}
   player: {fileID: 0}
-  smoothSpeed: 0.125
+  smoothSpeed: 0.05
   offset: {x: 0, y: 13.52, z: 0}
   mainCamera: {fileID: 0}
