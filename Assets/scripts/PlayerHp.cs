@@ -30,7 +30,7 @@ public class PlayerHp : MonoBehaviour, IDamageable
             canDie = false;
         if (weaponsystem.shield == 0)
             canDie = true;
-        if(currentHp == 0)
+        if(currentHp == 0 && !isDead)
         {
             StartCoroutine(Die());
             
