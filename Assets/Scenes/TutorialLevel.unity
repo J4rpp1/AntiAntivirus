@@ -7620,6 +7620,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5292629587637978074, guid: 93be59e5917ac4645ae34feb536dfbec,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5292629587637978074, guid: 93be59e5917ac4645ae34feb536dfbec,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5292629587637978074, guid: 93be59e5917ac4645ae34feb536dfbec,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5900403712513307409, guid: 93be59e5917ac4645ae34feb536dfbec,
         type: 3}
       propertyPath: m_RootOrder
@@ -9770,6 +9785,11 @@ PrefabInstance:
     - target: {fileID: 604915491615335394, guid: 98a8db7af51fd624e8ff6a6ca3c18629,
         type: 3}
       propertyPath: orthographic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 604915491615335395, guid: 98a8db7af51fd624e8ff6a6ca3c18629,
+        type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 604915491615335404, guid: 98a8db7af51fd624e8ff6a6ca3c18629,
