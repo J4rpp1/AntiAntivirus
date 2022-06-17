@@ -1462,7 +1462,8 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 2147483647
-  walkSpeed: 6
+  walkSpeed: 6.75
+  knifeSpeed: 8.5
   target: {fileID: 0}
   animator: {fileID: 8971605782402296629}
   weaponSorting: {fileID: 7850310760659132045}

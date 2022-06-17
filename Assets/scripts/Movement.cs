@@ -11,7 +11,9 @@ public class Movement : MonoBehaviour
 	[SerializeField] private LayerMask groundMask;
 	private Camera mainCamera;
 
-	public float walkSpeed = 6f;
+	private float activeSpeed;
+	public float walkSpeed = 7.25f;
+	public float knifeSpeed = 8.5f;
 	public Transform target;
 	public Animator animator;
 	public SortingGroup weaponSorting;
@@ -30,28 +32,28 @@ public class Movement : MonoBehaviour
 		weaponSystem = GameObject.FindObjectOfType<WeaponSystem>();
 		rb = GetComponent<Rigidbody>();
 		mainCamera = Camera.main;
-		// sprintSpeed = walkSpeed + (walkSpeed / 2);
+		// sprintSpeed = activeSpeed + (activeSpeed / 2);
 
 	}
 
 	void FixedUpdate()
 	{
-		curSpeed = walkSpeed;
+		curSpeed = activeSpeed;
 		maxSpeed = curSpeed;
 
 		if (weaponSystem.knifeEquipped)
-			walkSpeed = 8.5f;
+			activeSpeed = knifeSpeed;
 		if (!weaponSystem.knifeEquipped)
-			walkSpeed = 6f;
+			activeSpeed = walkSpeed;
 
 		if (!levelSystem.planning && !playerHp.isDead)
 		{
 
 			moveDirection = new Vector3(
 				Input.GetAxisRaw("Horizontal"), 0f,
-			 Input.GetAxisRaw("Vertical")).normalized * walkSpeed;
+			 Input.GetAxisRaw("Vertical")).normalized * activeSpeed;
 
-			rb.velocity = Vector3.MoveTowards(rb.velocity, moveDirection, walkSpeed / 8);
+			rb.velocity = Vector3.MoveTowards(rb.velocity, moveDirection, activeSpeed / 8);
 
 			animator.SetFloat("SpeedX", Mathf.Abs(moveDirection.x));
 			animator.SetFloat("SpeedZ", Mathf.Abs(moveDirection.z));

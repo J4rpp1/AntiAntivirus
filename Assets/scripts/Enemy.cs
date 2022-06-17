@@ -19,6 +19,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
     WeaponSystem weaponSystem;
     
+    public float detectionRadius;
    
 
    
@@ -35,7 +36,6 @@ public class Enemy : MonoBehaviour, IDamageable
     public float rotateSpeed = 1f;
 
     public GameObject playerRef;
-    public float radius;
     [Range(0,360)]
     public float angle;
     public LayerMask targetMask;
@@ -208,7 +208,7 @@ public class Enemy : MonoBehaviour, IDamageable
          groundDeltaPosition.x = Vector3.Dot(transform.right, worldDeltaPosition);
          groundDeltaPosition.y = Vector3.Dot(transform.forward, worldDeltaPosition);
          velocity = (Time.deltaTime > 1e-5f) ? groundDeltaPosition / Time.deltaTime : velocity = Vector2.zero;
-         bool shouldMove = velocity.magnitude > 0.025f && agent.remainingDistance > agent.radius;*/
+         bool shouldMove = velocity.magnitude > 0.025f && agent.remainingDistance > agent.detectionRadius;*/
 
         /*animator.SetBool("Move", true);
         animator.SetFloat("Vertical", previousPosition.x);
@@ -379,7 +379,7 @@ public class Enemy : MonoBehaviour, IDamageable
    
     private void FieldofViewCheck()
     {
-        Collider[] rangeChecks = Physics.OverlapSphere(transform.position, radius, targetMask);
+        Collider[] rangeChecks = Physics.OverlapSphere(transform.position, detectionRadius, targetMask);
 
         if (rangeChecks.Length != 0)
         {

@@ -274,6 +274,7 @@ MonoBehaviour:
   ArDrop: {fileID: 8082582249178129205, guid: 25aed4123e1d2774b961d2b4ac363c9b, type: 3}
   patrolEnemy: 0
   points: []
+  detectionRadius: 16
   alertStarted: 0
   canStartIdle: 0
   currentHp: 0
@@ -281,7 +282,6 @@ MonoBehaviour:
   alertLevel: 0
   rotateSpeed: 12
   playerRef: {fileID: 0}
-  radius: 15
   angle: 180
   targetMask:
     serializedVersion: 2
@@ -317,7 +317,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 5
+  m_Speed: 6
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 360
