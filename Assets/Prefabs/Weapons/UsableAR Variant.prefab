@@ -9,6 +9,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3065690292304726615, guid: ec26ec96e45694a478bb0d12c1325c04,
         type: 3}
+      propertyPath: muzzleAni
+      value: 
+      objectReference: {fileID: 7481370438618844131, guid: 531721974ce1ff9468544a0ff6297129,
+        type: 3}
+    - target: {fileID: 3065690292304726615, guid: ec26ec96e45694a478bb0d12c1325c04,
+        type: 3}
       propertyPath: _shootSound
       value: 
       objectReference: {fileID: 8300000, guid: 40cab87c5d1e2f94eb978b6f26b6d1b3, type: 3}

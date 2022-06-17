@@ -7,6 +7,7 @@ public class AssaultRifle : WeaponBase
     WeaponSystem weaponSystem;
     public float fireRate;
     public GameObject muzzleFlash;
+    public GameObject muzzleAni;
     public Vector3 gizmoPosition;
     public float radius = 5;
     bool isShooting;
@@ -31,6 +32,7 @@ public class AssaultRifle : WeaponBase
     IEnumerator Shooting()
     {
         isShooting = true;
+        Instantiate(muzzleAni, ProjectileSpawnLocation.position, ProjectileSpawnLocation.rotation);
         weaponSystem.currentWepAmmocount = weaponSystem.currentWepAmmocount - 1;
         muzzleFlash.SetActive(true);
         Projectile newProjectile = Instantiate

@@ -14,7 +14,7 @@ public class Shotgun : WeaponBase
     public GameObject bullet;
     public int ammoCount;
     public int MaxAmmo;
-
+    public GameObject muzzleAni;
     public Vector3 gizmoPosition;
     public float radius = 5;
     private void Awake()
@@ -29,7 +29,7 @@ public class Shotgun : WeaponBase
  
     public override void Shoot()
     {
-       
+        Instantiate(muzzleAni, ProjectileSpawnLocation.position, ProjectileSpawnLocation.rotation);
         StartCoroutine(MuzzleFlash());
         ammoCount = ammoCount - 1;
         for (int i = 0; i < bulletsPerShot; i++)

@@ -6,7 +6,7 @@ public class Pistol : WeaponBase
 {
     
     public GameObject muzzleFlash;
- 
+    public GameObject muzzleAnimation;
     
  
     public void Start()
@@ -16,9 +16,10 @@ public class Pistol : WeaponBase
     }
     public override void Shoot()
     {
+       
         StartCoroutine(MuzzleFlash());
 
-        
+        Instantiate(muzzleAnimation, ProjectileSpawnLocation.position, ProjectileSpawnLocation.rotation);
         // instantiating bullet
         Projectile newProjectile = Instantiate
             (Projectile, ProjectileSpawnLocation.position,

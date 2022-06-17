@@ -62,6 +62,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4028599440152847620, guid: ec26ec96e45694a478bb0d12c1325c04,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4028599440152847620, guid: ec26ec96e45694a478bb0d12c1325c04,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.94
+      objectReference: {fileID: 0}
     - target: {fileID: 6177378563899635510, guid: ec26ec96e45694a478bb0d12c1325c04,
         type: 3}
       propertyPath: m_Sprite
@@ -124,5 +134,7 @@ MonoBehaviour:
   bullet: {fileID: 6727736789818243738, guid: 4b7e7035c3a0ec148ab25f11fb4a137a, type: 3}
   ammoCount: 3
   MaxAmmo: 0
+  muzzleAni: {fileID: 7481370438618844131, guid: 028764af91eb3424f8abeb2de297841c,
+    type: 3}
   gizmoPosition: {x: 0, y: 0, z: 0}
   radius: 5
