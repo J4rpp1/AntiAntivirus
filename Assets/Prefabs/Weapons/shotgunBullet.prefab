@@ -131,6 +131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionPrefab: {fileID: 939073975210049180, guid: 696d7f121d81ce24d8af85d20595c880,
     type: 3}
+  destroyTime: 0.9
 --- !u!1001 &7567781986848956536
 PrefabInstance:
   m_ObjectHideFlags: 0

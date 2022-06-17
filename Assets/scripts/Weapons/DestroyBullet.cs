@@ -6,6 +6,7 @@ public class DestroyBullet : MonoBehaviour
 {
 
     public Transform explosionPrefab;
+    public float destroyTime;
 
     private void Start()
     {
@@ -29,7 +30,7 @@ public class DestroyBullet : MonoBehaviour
 
     IEnumerator Destroy()
     {
-        yield return new WaitForSeconds(.6f);
+        yield return new WaitForSeconds(destroyTime);
         Destroy(gameObject);
     }
 }
