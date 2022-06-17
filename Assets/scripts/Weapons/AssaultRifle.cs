@@ -5,6 +5,7 @@ using UnityEngine;
 public class AssaultRifle : WeaponBase
 {
     WeaponSystem weaponSystem;
+    public bool playerUsing;
     public float fireRate;
     public GameObject muzzleFlash;
     public GameObject muzzleAni;
@@ -33,6 +34,7 @@ public class AssaultRifle : WeaponBase
     {
         isShooting = true;
         Instantiate(muzzleAni, ProjectileSpawnLocation.position, ProjectileSpawnLocation.rotation);
+        if(playerUsing)
         weaponSystem.currentWepAmmocount = weaponSystem.currentWepAmmocount - 1;
         muzzleFlash.SetActive(true);
         Projectile newProjectile = Instantiate

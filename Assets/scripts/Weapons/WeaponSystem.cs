@@ -196,6 +196,8 @@ public class WeaponSystem : MonoBehaviour
     IEnumerator PickupAr()
     {
         EquipWeapon(arPrefab);
+        AssaultRifle originalGameObject = GetComponentInChildren<AssaultRifle>();
+        originalGameObject.playerUsing = true;
         arImage.SetActive(true);
         knifeEquipped = false;
         equipped = true;

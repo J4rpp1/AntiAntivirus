@@ -29,9 +29,9 @@ public class Shotgun : WeaponBase
  
     public override void Shoot()
     {
+       // ammoCount = ammoCount - 1;
         Instantiate(muzzleAni, ProjectileSpawnLocation.position, ProjectileSpawnLocation.rotation);
         StartCoroutine(MuzzleFlash());
-        ammoCount = ammoCount - 1;
         for (int i = 0; i < bulletsPerShot; i++)
         {
            pellets[i] = Random.rotation;
