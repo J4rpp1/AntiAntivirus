@@ -15,6 +15,7 @@ public class PlayerHp : MonoBehaviour, IDamageable
     public AudioClip shieldDownSound;
     public bool isDead;
     public Animator animator;
+    public Collider m_Collider;
     void Start()
     {
         instance = this;
@@ -46,6 +47,7 @@ public class PlayerHp : MonoBehaviour, IDamageable
     }
     IEnumerator Die()
     {
+        m_Collider.enabled = false;
         animator.SetTrigger("Dead");
         isDead = true;
         SFX.instance.PlayClip(deathSound, 1f);

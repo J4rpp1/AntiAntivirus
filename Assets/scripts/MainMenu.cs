@@ -13,6 +13,7 @@ public class MainMenu : MonoBehaviour
     public GameObject infoMenuUi;
     public AudioSource buttonPress;
     public AudioMixer musicMixer;
+    public AudioMixer sfxMixer;
     void Start()
     {
         SetMusicLevel(0f);
@@ -21,6 +22,10 @@ public class MainMenu : MonoBehaviour
     public void SetMusicLevel(float sliderValue)
     {
         musicMixer.SetFloat("MusicVol", Mathf.Log10(sliderValue) * 20);
+    }
+    public void SetSfxLevel(float sliderValue)
+    {
+        sfxMixer.SetFloat("SoundFx", Mathf.Log10(sliderValue) * 20);
     }
     public void OpenLevelSelect()
     {

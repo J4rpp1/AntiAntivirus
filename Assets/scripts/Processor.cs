@@ -11,6 +11,7 @@ public class Processor : MonoBehaviour, IDamageable
     public AudioClip laughter;
     bool destroyed;
     public AudioClip destroySound;
+    public GameObject destroyText;
     void Start()
     {
         levelSystem = GameObject.FindObjectOfType<LevelSystem>();
@@ -19,7 +20,8 @@ public class Processor : MonoBehaviour, IDamageable
     // Update is called once per frame
     void Update()
     {
-        
+        if (!levelSystem.planning)
+            destroyText.SetActive(false);
     }
 
     public void Damage()

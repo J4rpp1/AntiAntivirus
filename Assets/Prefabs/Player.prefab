@@ -1008,7 +1008,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1871286240775481434}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
@@ -1568,6 +1568,7 @@ MonoBehaviour:
   shieldDownSound: {fileID: 8300000, guid: 4e54f480240af8b4bb21a3686cdfa8ab, type: 3}
   isDead: 0
   animator: {fileID: 8971605782402296629}
+  m_Collider: {fileID: 1270641521}
 --- !u!1 &5524036480958974094
 GameObject:
   m_ObjectHideFlags: 0
