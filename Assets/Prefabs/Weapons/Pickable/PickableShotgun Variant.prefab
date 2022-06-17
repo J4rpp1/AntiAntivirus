@@ -111,5 +111,5 @@ MonoBehaviour:
   isPistol: 0
   isShotgun: 0
   isAr: 0
-  currentAmmo: 6
+  currentAmmo: 5
   shield: 0

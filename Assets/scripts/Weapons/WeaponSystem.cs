@@ -109,11 +109,11 @@ public class WeaponSystem : MonoBehaviour
             SFX.instance.PlayClip(noAmmo, 1f);
 
         if (pistolEquipped)
-            ammoText.text = currentWepAmmocount.ToString() + "/10";
+            ammoText.text = currentWepAmmocount.ToString() + "/8";
         if(shotgunEquipped)
-            ammoText.text = currentWepAmmocount.ToString() + "/6";
+            ammoText.text = currentWepAmmocount.ToString() + "/5";
         if(arEquipped)
-            ammoText.text = currentWepAmmocount.ToString() + "/30";
+            ammoText.text = currentWepAmmocount.ToString() + "/20";
         if (Input.GetKeyDown(KeyCode.Mouse1) && !playerHp.isDead) 
         TryPickupWeapon();
 

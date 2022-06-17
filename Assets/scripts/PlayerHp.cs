@@ -16,8 +16,10 @@ public class PlayerHp : MonoBehaviour, IDamageable
     public bool isDead;
     public Animator animator;
     public Collider m_Collider;
+    Rigidbody m_Rigidbody;
     void Start()
     {
+        m_Rigidbody = GetComponent<Rigidbody>();
         instance = this;
         canDie = true;
         musicPlayer = GameObject.FindObjectOfType<MusicPlayer>();
@@ -47,6 +49,7 @@ public class PlayerHp : MonoBehaviour, IDamageable
     }
     IEnumerator Die()
     {
+        m_Rigidbody.constraints = RigidbodyConstraints.FreezePosition;
         m_Collider.enabled = false;
         animator.SetTrigger("Dead");
         isDead = true;
