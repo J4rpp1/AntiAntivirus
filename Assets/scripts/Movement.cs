@@ -78,7 +78,7 @@ public class Movement : MonoBehaviour
 				animator.SetBool("Back", true);
 				weaponSorting.sortingOrder = -1;
 			}
-			else
+			if (moveDirection.z < -0.1)
 			{
 				animator.SetBool("Back", false);
 				weaponSorting.sortingOrder = 1;
