@@ -245,6 +245,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   processorSprite: {fileID: 4251858138607589339}
   damagedProcessorSprite: {fileID: 9140102076720605171}
+  laughter: {fileID: 8300000, guid: 4db8f892ed094534cb4451f89f81ba54, type: 3}
   destroySound: {fileID: 8300000, guid: da448fdb5a587164ca3a066f0ee0a6f9, type: 3}
 --- !u!1 &9140102076720605171
 GameObject:
