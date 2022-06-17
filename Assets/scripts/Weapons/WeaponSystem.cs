@@ -119,7 +119,8 @@ public class WeaponSystem : MonoBehaviour
 
         if (shield == 0)
             shieldObj.SetActive(false);
-        
+        if (currentWepAmmocount < 0)
+            currentWepAmmocount = 0;
     }
     void TryPickupWeapon()
     {

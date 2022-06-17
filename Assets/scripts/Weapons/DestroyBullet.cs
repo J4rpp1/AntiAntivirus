@@ -29,7 +29,7 @@ public class DestroyBullet : MonoBehaviour
 
     IEnumerator Destroy()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(.6f);
         Destroy(gameObject);
     }
 }
