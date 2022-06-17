@@ -1314,6 +1314,7 @@ MonoBehaviour:
   processorsDestroyed: 0
   planningInterface: {fileID: 6469870074038278728}
   nextLevelScreen: {fileID: 6610962046922056650}
+  nextLevelButton: {fileID: 6610962047240071747}
 --- !u!1 &6749806252730195794
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,6 +3,7 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour
 {
 	LevelSystem levelSystem;
+
 	public Transform crosshair;
 	public Transform player;
 

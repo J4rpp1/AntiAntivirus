@@ -11,15 +11,16 @@ public class LevelSystem : MonoBehaviour
     public bool planning;
     public int processorCount;
     public int processorsDestroyed;
-   
+    private Scene scene;
 
     public GameObject planningInterface;
     public GameObject nextLevelScreen;
+    public GameObject nextLevelButton;
     bool levelIsCompleted;
 
     void Start()
     {
-        
+        scene = SceneManager.GetActiveScene();
         instance = this;
         musicPlayer = GameObject.FindObjectOfType<MusicPlayer>();
         pauseMenu = GameObject.FindObjectOfType<PauseMenu>();
@@ -52,6 +53,8 @@ public class LevelSystem : MonoBehaviour
         Cursor.visible = true; 
         pauseMenu.pause = true;
         nextLevelScreen.SetActive(true);
+        if (scene.buildIndex == 3)
+            nextLevelButton.SetActive(false);
         Time.timeScale = 0;
     }
 
