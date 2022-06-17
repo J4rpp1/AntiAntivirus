@@ -215,14 +215,16 @@ public class Enemy : MonoBehaviour, IDamageable
         animator.SetFloat("Horizontal", previousPosition.y);*/
 
 
-        if (canSeePlayer && notShooting && !pauseMenu.pause && !isDead)
+        if (canSeePlayer && notShooting && !pauseMenu.pause && !isDead && !isArEnemy)
         {
             Debug.Log("saa ampua");
             StartCoroutine(Shoot());
 
         }
+        if(canSeePlayer && notShooting && !pauseMenu.pause && !isDead && isArEnemy)
+            EquippedWeapon.Shoot();
         //n�kee pelaajan
-        if(canSeePlayer && !pauseMenu.pause && !isDead)
+        if (canSeePlayer && !pauseMenu.pause && !isDead)
         {
             timer = 0;
             timer3 = 0;
