@@ -196,14 +196,14 @@ public class WeaponSystem : MonoBehaviour
     IEnumerator PickupAr()
     {
         EquipWeapon(arPrefab);
-        AssaultRifle originalGameObject = GetComponentInChildren<AssaultRifle>();
-        originalGameObject.playerUsing = true;
         arImage.SetActive(true);
         knifeEquipped = false;
         equipped = true;
         arEquipped = true;
         destroyWep = true;
         yield return new WaitForSeconds(0.1f);
+        AssaultRifle originalGameObject = GetComponentInChildren<AssaultRifle>();
+        originalGameObject.playerUsing = true;
         canPickUpAr = false;
         destroyWep = false;
         canDrop = true;

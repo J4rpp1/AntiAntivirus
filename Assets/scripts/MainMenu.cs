@@ -16,7 +16,7 @@ public class MainMenu : MonoBehaviour
     public AudioMixer sfxMixer;
     void Start()
     {
-        SetMusicLevel(0f);
+        //SetMusicLevel(0f);
 
     }
     public void SetMusicLevel(float sliderValue)
